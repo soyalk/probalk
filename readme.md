@@ -33,4 +33,6 @@ This Why I Add This Function But Until Now No More Informations About This Attac
 - ```bash probalk.sh```
 
 #### Disclaimer
+-----------------------------------------------------
 ##### To Use The Script You must be Permitted By Network Admin Or must be your network any use out of law is at your responsibility
+-----------------------------------------------------
