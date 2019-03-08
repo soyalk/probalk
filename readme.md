@@ -22,8 +22,10 @@ This Why I Add This Function But Until Now No More Informations About This Attac
  -Macchanger
  -libssl
 #### :heavy_plus_sign: INSTALL
-`git clone https://`
+`git clone https://github.com/soyalk/probalk.git`
 `cd probalk`
 `chmod +x *`
 `bash probalk.sh`
 
+#### Disclaimer
+##### To Use The Script You must be Permitted By Network Admin Or must be your network any use out of law is at your responsibility
