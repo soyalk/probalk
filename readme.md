@@ -16,13 +16,13 @@ can also do:
 Heart Bleed Probes Is A Vulnerablity That I Discover   When I Analyse Packets Of My Network Ifound The Password Of My WiFi Network Instead A Probe Frame And For A Period I Found Some Friends Of Mine Found The Same Thing But This Time They Found It At Probe Respond Of A Router Of The Same Manufacturer.
 This Why I Add This Function But Until Now No More Informations About This Attack I Will Try To List The  vulnerable Devices .
 #### :heavy_exclamation_mark: REQUERMENT 
- -Aircrack-ng
- -Reaver
- -Bully
- -Macchanger
- -libssl
+ - Aircrack-ng
+ - Reaver
+ - Bully
+ - Macchanger
+ - libssl
 #### :heavy_plus_sign: INSTALL
-`git clone https://github.com/soyalk/probalk.git`
+`git clone https://github.com/soyalk/probalk.git` \n
 `cd probalk`
 `chmod +x *`
 `bash probalk.sh`
