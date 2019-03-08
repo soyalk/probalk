@@ -1,7 +1,7 @@
 ## PROBALK THE FUTURE OF WPA2 ATTACKS
 #### :o:  WHAT IS PROBALK SCRIPT AND WHAT IS NEW ON IT ?
 -----------------------------------------------------
-Probalk script is a script that was made for educationals purposes just to demonstrate how can anyone get in your network even you think that it secured and also to show you some weaknesses of WPA/WPA2 and also i m working on a new attack that is more efficace :=0 .
+Probalk script is a script that was made for educationals purposes just to demonstrate how can anyone get in your network even you think that it secured and also to show you some weaknesses of WPA/WPA2 and also i m working on a new attack that is more effective
 #### :heavy_check_mark: WHAT ARE THE ATTACKS THAT THIS SCRIPT CAN DO ?
 -----------------------------------------------------
   - Heart Bleed Probes Bruteforce Attack (still expirimental )
