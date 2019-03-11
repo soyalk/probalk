@@ -5,16 +5,16 @@ if [[ ! $(whoami) = "root" ]]; then
 echo "Please run script as root"
 exit 1
 fi
-if [ -e /tmp/ ]; then
-echo "tmp exist"
-
+if [ -e /tmp/probalk ]; then
+rm -rf  /tmp/probalk
 fi
+chmod 7777 include
 sleep 2
 mkdir /tmp/probalk/
 
-cp win36l.zip  /tmp/probalk
-cp win36h.zip  /tmp/probalk
-cp airmon.sh /tmp/probalk
+cp include/win36l.zip  /tmp/probalk
+cp include/win36h.zip  /tmp/probalk
+cp include/airmon.sh /tmp/probalk
 chmod 7777 *
 cd /tmp/probalk
 handshake=no
@@ -94,7 +94,7 @@ killall xterm 2&> /dev/null
 #########################################################################################################
 clear && sleep 0.2
 echo -e "$BGreen[*]checking For Needed Packages.... " && sleep 0.1 
-echo -ne "$BGreen[+] aircrack-ng....."
+echo -ne "$BGreen [+] aircrack-ng....."
 if ! hash aircrack-ng 2>/dev/null; then
         echo -e "$BRed Package Not Installed"
 	exit=1
@@ -103,7 +103,7 @@ else
 fi
 sleep 0.025
 
-echo -ne "[+] aireplay-ng....."
+echo -ne "$BGreen [+] aireplay-ng....."
 if ! hash aireplay-ng 2>/dev/null; then
 	echo -e "$BRed Package Not Installed"
 	exit=1
@@ -112,7 +112,7 @@ else
 fi
 sleep 0.025
 
-echo -ne "[+] airmon-ng......."
+echo -ne "$BGreen [+] airmon-ng......."
 if ! hash airmon-ng 2>/dev/null; then
 	echo -e "$BRed Package Not Installed"
 	c
@@ -121,7 +121,7 @@ else
 fi
 sleep 0.025
 
-echo -ne "[+] airodump-ng....."
+echo -ne "$BGreen [+] airodump-ng....."
 if ! hash airodump-ng 2>/dev/null; then
 	echo -e "$BRed Package Not Installed"
 	exit=1
@@ -129,7 +129,7 @@ else
 	echo -e "$BGreen OK"
 fi
 
-echo -ne "[+] cowpatty....."
+echo -ne "$BGreen [+] cowpatty....."
 if ! hash cowpatty 2>/dev/null; then
 	echo -e "$BRed Package Not Installed"
 	exit=1
@@ -137,7 +137,7 @@ else
 	echo -e "$BGreen OK"
 fi
 
-echo -ne "[+] Macchanger....."
+echo -ne "$BGreen [+] Macchanger....."
 if ! hash macchanger 2>/dev/null; then
 	echo -e "$BRed Package Not Installed"
 	exit=1
@@ -146,7 +146,7 @@ else
 fi
 sleep 0.025
 
-echo -ne "[+]awk............."
+echo -ne "$BGreen [+]awk............."
 if ! hash awk 2>/dev/null; then
 	echo -e "$BRed Package Not Installed"
 	exit=1
@@ -154,7 +154,7 @@ else
 	echo -e "$BGreen OK"
 fi
 
-echo -ne "[+]UnZip............."
+echo -ne "$BGreen [+]UnZip............."
 if ! hash unzip 2>/dev/null; then
 	echo -e "$BRed Package Not Installed"
 	exit=1
@@ -162,14 +162,14 @@ else
 	echo -e "$BGreen OK"
 fi
 
-echo -ne "[+]PixieWPs.........."
+echo -ne "$BGreen [+]PixieWPs.........."
 if ! hash pixiewps 2>/dev/null; then
 	echo -e "$BRed Package Not Installed"
 	exit=1
 else
 	echo -e "$BGreen OK"
 fi
-echo -ne "[+]Reaver............."
+echo -ne "$BGreen [+]Reaver............."
 if ! hash reaver 2>/dev/null; then
 	echo -e "$BRed Package Not Installed"
 	exit=1
@@ -562,8 +562,10 @@ heartwithout(){
 			handshakep=handshake-01.cap
 		else
 
-		read -p "handshake path" handshakep
+		read -p "Enter The handshake path:" handshakep
 		fi
+	else 
+				read -p "Enter The handshake path:" handshakep
 	fi
 		
 	pwdpath=~/Desktop/PASSWORD-OF-WIFI-CRACKED.txt
@@ -617,8 +619,10 @@ trap mainpage SIGINT SIGTERM SIGHUP
 			handshakep=handshake-01.cap
 		else
 
-		read -p "handshake path" handshakep
+		read -p "Enter the handshake path :" handshakep
 		fi
+	else
+			read -p "Enter The handshake path:" handshakep
 	fi
 		
 	pwdpath=~/Desktop/PASSWORD-OF-WIFI-CRACKED.txt
