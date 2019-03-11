@@ -12,7 +12,7 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
   - Custom WPS PIN CRACKING (Reaver/Bully)
   - All WPS Attacks Against Hiddens Networks
   - Bypass MAC Filter ( Whitelist / Blacklist) 
-###can also do:
+### can also do:
   - Increase TX_POWER For Your WiFi Adapter
 #### :interrobang: WHAT IS HEART BLEED PROBES ?
 -----------------------------------------------------
