@@ -16,8 +16,7 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
   - Increase TX_POWER For Your WiFi Adapter
 #### :interrobang: WHAT IS HEART BLEED PROBES ?
 -----------------------------------------------------
-Heart Bleed Probes Is A Vulnerablity That I Discover   When I Analyse Packets Of My Network Ifound The Password Of My WiFi Network Instead A Probe Frame And For A Period I Found Some Friends Of Mine Found The Same Thing But This Time They Found It At Probe Respond Of A Router Of The Same Manufacturer.
-This Why I Add This Function But Until Now No More Informations About This Attack I Will Try To List The  vulnerable Devices .
+Heart Bleed Probes Is A Vulnerablity That I Discovered When I Analysed Packets Of My Network , I found The Password Of My WiFi Network Instead of A Probe Frame And For A Period I Found Some Friends Of Mine  who Found The Same Thing , But This Time They Found It At Probe Respond Of A Router Of The Same Manufacturer. This Why I Added This Function But Until Now , there is no more Information About This Attack . I Will Try To List The vulnerable Devices . .
 #### :heavy_exclamation_mark: REQUERMENT 
 -----------------------------------------------------
  - Aircrack-ng
