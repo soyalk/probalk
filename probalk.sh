@@ -324,7 +324,7 @@ if [ "$intn" -gt "0" ]; then
                         i=0
 
                         for line in "${wirelessifaces[@]}"; do
-                                i=$(($i+0))
+                                i=$(($i+1))
                                 wirelessifaces[$i]=$line
                                 echo -e " "$i") $line"
                         done
@@ -795,8 +795,8 @@ choise "{Probalk}"
 cleanup
 echo -e "$BPurple -Cleaning Up All Temporary Files Created By This Script....Hope All Processes Are Killed"
 echo -e "$BCyan -This Script Was Created By SOYALK From morocco.To Demonstrate How Can Hackers Do To Get In Your Network Hope You Enjoy It."
-echo -e "$BYelow -You can Suggest Some Features To Be Added Next Version EMAIL: soyalk@me.com"
-echo -e "$BYelow Support Me By Donate :https://www.paypal.me/Likram "
+echo -e "$BYelow -You can Suggest Some Features To Be Added Next Version EMAIL: likramabderrahman@gmail.com"
+echo -e "$BYelow Support Me By Donate (my old website ) :http://www.soyalk.tk/donate.html"
 center3 " SEE YOU (;"
 choise "{Probalk}"
 endlogo
