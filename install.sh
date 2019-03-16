@@ -5,25 +5,26 @@ BGreen='\e[1;32m'       # Green
 installfor64bit (){
  cd dpkg/64/
 echo -e "[+]$BGreen  Installing libssl "
-dpkg -i libssl.deb
-echo -e "[+]$BGreen  Installing Aircrack-ng "
-dpkg -i aircrack-ng.deb
-echo  -e "[+] $BGreen Installing Reaver "
-dpkg -i reaver.deb
-echo -e  "[+] Installing  "
-dpkg -i  
+dpkg -i libssl*
+#echo -e "[+]$BGreen  Installing Aircrack-ng "
+#dpkg -i aircrack-ng*
+echo  -e "[+] $BGreen Installing build-essential "
+dpkg -i build*
+echo -e  "[+] $BGreen Installing  libpcap0.8-dev "
+dpkg -i libpcap0.8-dev*
 cd ../..
 }
 
 installfor32bit () {
 cd dpkg/32/
+echo -e "[+]$BGreen  Installing libssl "
 dpkg -i libssl.deb
-echo  -e "[+]$BGreen  Installing Aircrack-ng "
-dpkg -i aircrack-ng.deb
-echo -e  "[+] $BGreen Installing Reaver "
-dpkg -i reaver.deb
-echo  -e "[+]$BGreen  Installing  "
-dpkg -i
+#echo  -e "[+]$BGreen  Installing Aircrack-ng "
+#dpkg -i aircrack-ng.deb
+echo  -e "[+] $BGreen Installing build-essential "
+dpkg -i build*
+echo  -e "[+]$BGreen  Installing ibpcap0.8-dev  "
+dpkg -i libpcap0.8-dev*
 cd ../..
 }
 processor=`uname -m |grep 64 `
@@ -34,4 +35,21 @@ if [  "$processor" != "" ] ; then
 else 
 	installfor32bit
 fi
+cd dpkg/make/
+
+unzip reaver* 2>/dev/null
+unzip pixiewps* 2>/dev/null
+echo -e "[+] installing Pixiewps 1.4"
+cd pixiewps-master &&  make &&  make install 2>/dev/null
+cd .. 
+echo -e "$BGreen[+] installing reaver fork t6x"
+cd reaver-wps-fork-t6x-master
+cd src
+./configure
+make 2>/dev/null
+make install  2>/dev/null
+cd ../../.. 
+
+
+
 

