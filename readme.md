@@ -4,7 +4,7 @@
 Probalk  is a script that was made for educationals purposes just to demonstrate how can anyone get in your network even you think that its secured and also to show you some weaknesses of WPA/WPA2 and also i m working on a new attack that is more effective
 #### :heavy_check_mark: WHAT ARE THE ATTACKS THAT THIS SCRIPT CAN DO ?
 -----------------------------------------------------
-  - Heart Bleed Probes Bruteforce Attack (still expirimental )
+  - Heart Bleed Probes Bruteforce Attack (still experimental )
   - USB Bad Attack EXE 
   - Bad EXE WiFi Passwords Stealler
   - Pixie Dust Attack  (Reaver/Bully)
