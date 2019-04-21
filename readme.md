@@ -5,6 +5,7 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
 #### :heavy_check_mark: WHAT ARE THE ATTACKS THAT THIS SCRIPT CAN DO ?
 -----------------------------------------------------
   - Heart Bleed Probes Bruteforce Attack (still experimental )
+  - WEP Downgrade (evil twin encrypted with wep) [under developement]
   - USB Bad Attack EXE 
   - Bad EXE WiFi Passwords Stealler
   - Pixie Dust Attack  (Reaver/Bully)
@@ -16,7 +17,7 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
   - Increase TX_POWER For Your WiFi Adapter
 #### :interrobang: WHAT IS HEART BLEED PROBES ?
 -----------------------------------------------------
-Heart Bleed Probes Is A Vulnerablity That I Discovered When I Analysed Packets Of My Network , I found The Password Of My WiFi Network Instead of A Probe Frame And For A Period I Found Some Friends Of Mine  who Found The Same Thing , But This Time They Found It At Probe Respond Of A Router Of The Same Manufacturer. This Why I Added This Function But Until Now , there is no more Information About This Attack . I Will Try To List The vulnerable Devices . .
+Heart Bleed Probes Is A Vulnerablity That I Discovered When I Analysed Packets Of My Network , I found The Password Of A WiFi Network Instead of A Probe Frame And For A Period I Found Some Friends Of Mine  who Found The Same Thing  . This Why I Added This Function But Until Now , there is no more Information About This Attack . I Will Try To List The vulnerable Devices . .
 #### :heavy_exclamation_mark: REQUERMENT 
 -----------------------------------------------------
  - Aircrack-ng
@@ -24,14 +25,24 @@ Heart Bleed Probes Is A Vulnerablity That I Discovered When I Analysed Packets O
  - Bully
  - Macchanger
  - libssl
-#### :heavy_plus_sign: INSTALL
+ - libpcap-dev
+ - build-essential
+ - MDK3 
+ ....
+#### :heavy_plus_sign: INSTALL 
 -----------------------------------------------------
 - ```git clone https://github.com/soyalk/probalk.git```
 - ```cd probalk```
 - ```chmod +x *```
-- ```bash install.sh```
+online recommended :```sudo apt -y install build-essential libpcap-dev aircrack-ng pixiewps bully macchanger mdk3```
+- ```bash install.sh```  [ Do not run it if you have latest versions of tools it didn't ready yet ]
+
 #### :heavy_plus_sign: RUN
 ----------------
+- ```./probalk.sh```
+
+-OR
+
 - ```bash probalk.sh```
 #### Disclaimer
 -----------------------------------------------------
