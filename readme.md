@@ -34,7 +34,7 @@ Heart Bleed Probes Is A Vulnerablity That I Discovered When I Analysed Packets O
 - ```git clone https://github.com/soyalk/probalk.git```
 - ```cd probalk```
 - ```chmod +x *```
-online recommended :```sudo apt -y install build-essential libpcap-dev aircrack-ng pixiewps bully macchanger mdk3```
+- online recommended :```sudo apt -y install build-essential libpcap-dev aircrack-ng pixiewps bully macchanger mdk3```
 - ```bash install.sh```  [ Do not run it if you have latest versions of tools it didn't ready yet ]
 
 #### :heavy_plus_sign: RUN
