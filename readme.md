@@ -48,8 +48,8 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
 
 - ```bash probalk.sh```
 #### credit 
-- [minanagehsalalma] (https://github.com/minanagehsalalma)
-- [abdou-w10] (https://github.com/abdou-w10)
+- [minanagehsalalma](https://github.com/minanagehsalalma)
+- [abdou-w10](https://github.com/abdou-w10)
 - [hackshowteam] 
 #### Disclaimer
 -----------------------------------------------------
