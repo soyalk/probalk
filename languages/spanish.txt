@@ -1,0 +1,8 @@
+name : Nombre
+vendor : El Fabricante
+submit : Conectar A Internet
+message1 : El Enrutador Està Desconectado De Internet ,Por Favor Ingrese su WiFi contrasena para Recuperar La Conexion A Internet
+message2 : Ingresse Su Contrasena
+message3 : This field is required
+message4 : The password must be less than {0} characters!
+message5 : The password must be more than {0} characters!

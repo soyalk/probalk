@@ -1,0 +1,8 @@
+name : Nom Du WiFi
+vendor : Fabricant 
+submit : Se Connecter À Internet
+message1 : Votre Routeur Est Déconnecté ,Veuillez Saisir Votre Mot De Passe WiFi
+message2 : Entez  Vortre Mot de Passe WiFi
+message3 : Connecter
+message4 : Ce Champ Est Requis
+message5 : The password must be more than {0} characters!
