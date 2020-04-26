@@ -1,4 +1,7 @@
 ## PROBALK THE FUTURE OF WPA2 ATTACKS
+#### Changelog
+  - added evil twin attack 
+  - added handshake verification two methods (cowpatty aircrack-ng)
 #### :o:  WHAT IS PROBALK SCRIPT AND WHAT IS NEW ON IT ?
 -----------------------------------------------------
 Probalk  is a script that was made for educationals purposes just to demonstrate how can anyone get in your network even you think that its secured and also to show you some weaknesses of WPA/WPA2 and also i m working on a new attack that is more effective
