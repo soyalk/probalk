@@ -175,6 +175,7 @@ rmfilestwin (){
       
       if [ -f "PASSWORD-OF-$bssid.txt" ]; then
      kill $PID1 $PID2 $PID3 $PID4 $PID5 $PID6 $PID7 $PID8 &>/dev/null
+      killall  hostapd lighttpd   mdk3 dnsmasq &>/dev/null
      xterm -hold  "#000000" -fg "#FFFFFF" -title "probalk AIRCRACK-NG" -e   aircrack-ng   -w "$scriptpath/server/attempts.txt" -b "$bssid" "$handshakep"  
 
   break
