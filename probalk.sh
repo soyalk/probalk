@@ -1249,7 +1249,7 @@ choise "{Probalk}"
 echo -e  "$BCyan 6)Back " && sleep 0.1
 
 printselected
-chmod 7777 "$scriptpath/languages"
+chmod 7777 "$scriptpath/languages/"
 rm -rf "$scriptpath/downgrade/server/*"
 y=0
 while [ $y = 0 ]   
@@ -1291,20 +1291,19 @@ if [ -z "$lang" ] ;
 then
 echo "not default" 
 else
-languagefile=`echo "$scriptpath/languages/$lang.txt"`
-cp -rf "$languagefile" "$scriptpath/downgrade/server/language.txt"
+cp -rf "$scriptpath/languages/$lang.txt" "$scriptpath/downgrade/server/language.txt"
 cp -rf "$scriptpath/pages/default/." "$scriptpath/downgrade/server/"
 fi
-chmod 7777 "$scriptpath/downgrade/server"
-chmod 7777 "$scriptpath/downgrade"
-chmod 7777 "$scriptpath/downgrade/server/*"
+chmod 7777 "$scriptpath/downgrade/server" 2>/dev/null
+chmod 7777 "$scriptpath/downgrade" 2>/dev/null
+chmod 7777 "$scriptpath/downgrade/server/*" 2>/dev/null
 echo "$essid" > "$scriptpath/downgrade/paramet.txt"
 echo "$bssid" >> "$scriptpath/downgrade/paramet.txt"
 echo "$ch" >> "$scriptpath/downgrade/paramet.txt"
 echo "$nameintc" >> "$scriptpath/downgrade/paramet.txt"
 echo "$ssl" >> "$scriptpath/downgrade/paramet.txt"
 echo "$scriptpath" >> "$scriptpath/downgrade/paramet.txt"
-chmod 7777 "$scriptpath/downgrade"
+chmod 7777 "$scriptpath/downgrade" 2>/dev/null
 echo "$handshakep" >> "$scriptpath/downgrade/paramet.txt"
 echo "$resultpath" >> "$scriptpath/downgrade/paramet.txt"
 cd "$scriptpath/downgrade/"
@@ -1313,8 +1312,8 @@ cp -rf "$scriptpath/include/oui.txt" "$scriptpath/downgrade/oui.txt"
 
 xterm -hold -geometry "140x40+200+0"  -bg "#ff0000" -fg "#30b21a" -title "probalkEvil Twin MAIN" -e bash "$scriptpath/downgrade/eviltwin.sh" 
 cd "/tmp/probalk/"
-killall hostapd
-killall lightttpd
+killall hostapd 2>/dev/null
+killall lightttpd 2>/dev/null
 
 
 pausef "press any key to continue ....."
