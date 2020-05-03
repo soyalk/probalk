@@ -6,6 +6,7 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
 -----------------------------------------------------
   - Heart Bleed Probes Bruteforce Attack (still experimental )
   - WEP Downgrade (evil twin encrypted with wep) [under developement]
+  - ADVENCED CLASSICAL EVIL TWIN ATTACK 
   - USB Bad Attack EXE 
   - Bad EXE WiFi Passwords Stealler
   - Pixie Dust Attack  (Reaver/Bully)
@@ -13,11 +14,6 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
   - Custom WPS PIN CRACKING (Reaver/Bully)
   - All WPS Attacks Against Hiddens Networks
   - Bypass MAC Filter ( Whitelist / Blacklist) 
-##### can also do:
-  - Increase TX_POWER For Your WiFi Adapter
-#### :interrobang: WHAT IS HEART BLEED PROBES ?
------------------------------------------------------
-Heart Bleed Probes Is A Vulnerablity That I Discovered When I Analysed Packets Of My Network , I found The Password Of A WiFi Network Instead of A Probe Frame And For A Period I Found Some Friends Of Mine  who Found The Same Thing  . This Why I Added This Function But Until Now , there is no more Information About This Attack . I Will Try To List The vulnerable Devices . .
 #### :heavy_exclamation_mark: REQUERMENT 
 -----------------------------------------------------
  - Aircrack-ng
@@ -27,9 +23,13 @@ Heart Bleed Probes Is A Vulnerablity That I Discovered When I Analysed Packets O
  - libssl
  - libpcap-dev
  - build-essential
- - MDK3 
+ - MDK3
+ - Hostapd
+ - lighttpd
+ - php-fastcgi
+ - Dnsmasq 
  ....
-#### :heavy_plus_sign: INSTALL 
+#### :heavy_plus_sign: INSTALL REQUERED PACKAGES (offline not recommended )
 -----------------------------------------------------
 - ```git clone https://github.com/soyalk/probalk.git```
 - ```cd probalk```

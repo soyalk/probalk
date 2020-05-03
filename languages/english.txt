@@ -1,0 +1,8 @@
+name : name
+vendor : vendor
+submit : connect to the internet
+message1 : The Router Is Disconnected From The Internet Please Type Your WiFi Password To Recover Internet Connection
+message2 : Enter  Your WiFi Password :
+message3 : This field is required
+message4 : The password must be less than {0} characters!
+message5 : The password must be more than {0} characters!

