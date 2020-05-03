@@ -37,7 +37,7 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
 - ```git clone https://github.com/soyalk/probalk.git```
 - ```cd probalk-probalk-v2```
 - ```chmod +x *```
-- online recommended :```sudo apt -y install build-essential libpcap-dev aircrack-ng pixiewps bully macchanger mdk3```
+- online recommended :```sudo apt -y install build-essential libpcap-dev aircrack-ng pixiewps bully macchanger mdk3 php-fastcgi dnsmasq lighttpd xterm cowpatty ```
 - ```bash install.sh```  [ Do not run it if you have latest versions of tools it didn't ready yet ]
 
 #### :heavy_plus_sign: RUN
