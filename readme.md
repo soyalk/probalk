@@ -1,4 +1,7 @@
 ## PROBALK THE FUTURE OF WPA2 ATTACKS
+#### Changelog
+  - added evil twin attack 
+  - added handshake verification two methods (cowpatty aircrack-ng)
 #### :o:  WHAT IS PROBALK SCRIPT AND WHAT IS NEW ON IT ?
 -----------------------------------------------------
 Probalk  is a script that was made for educationals purposes just to demonstrate how can anyone get in your network even you think that its secured and also to show you some weaknesses of WPA/WPA2 and also i m working on a new attack that is more effective
@@ -32,7 +35,7 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
 #### :heavy_plus_sign: INSTALL REQUERED PACKAGES (offline not recommended )
 -----------------------------------------------------
 - ```git clone https://github.com/soyalk/probalk.git```
-- ```cd probalk```
+- ```cd probalk-probalk-v2```
 - ```chmod +x *```
 - online recommended :```sudo apt -y install build-essential libpcap-dev aircrack-ng pixiewps bully macchanger mdk3```
 - ```bash install.sh```  [ Do not run it if you have latest versions of tools it didn't ready yet ]
@@ -44,6 +47,10 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
 -OR
 
 - ```bash probalk.sh```
+#### credit 
+- [minanagehsalalma](https://github.com/minanagehsalalma)
+- [abdou-w10](https://github.com/abdou-w10)
+- [hackshowteam](https://www.hackshowblog.com/)
 #### Disclaimer
 -----------------------------------------------------
 ##### To Use The Script You must be Permitted By Network Admin Or must be your network any use out of law is at your responsibility
