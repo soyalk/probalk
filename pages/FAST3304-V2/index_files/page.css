@@ -1,0 +1,33 @@
+#login {
+	margin: 50px;
+	padding: 0px;
+}
+
+#login table.login {
+}
+
+#login td.libelle {
+	width: 80px;
+}
+
+#login td.field {
+}
+
+#phone {
+	margin-top: 20px;
+	padding: 0px;
+}
+
+#phone table {
+	margin-bottom: 20px;
+}
+
+#phone td.libelle {
+}
+
+#phone td.field {
+}
+
+#phone p {
+}
+

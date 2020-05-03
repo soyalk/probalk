@@ -1,0 +1,162 @@
+A {
+	color: #000000;
+	background-color: transparent;
+	text-decoration: none;
+	font-family: Verdana, Arial, Helvetica;
+}
+
+A:hover {
+	color: #000000;
+	text-decoration: underline;
+	font-family: Verdana, Arial, Helvetica;
+}
+
+A:visited {
+	text-decoration: none;
+	color: #333333;
+}
+
+
+.strike {
+	text-decoration: line-through;
+}
+
+
+input, select, textarea {
+    /* background-color: #CCCCCC; */
+    background-color: #F0F0F0; 
+    border: 1px solid #000000;
+    color: #000000;
+    padding: 1px;
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    vertical-align: middle;
+    z-index: 0;
+}
+
+select.error {
+    font-family: Verdana, Arial, Helvetica;
+    background-color: #CCCCCC;
+	border: 2px solid #000000;
+    color: #000000;
+}
+
+input {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    padding: 3px;
+}
+
+input.error {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    background-color: #CCCCCC;
+	border: 2px solid #000000;
+    color: #000000;
+}
+
+textarea {
+    font-family: Verdana, Arial, Helvetica;
+	font-size: 11px;
+}
+
+textarea.error {
+    font-family: Verdana, Arial, Helvetica;
+	font-size: 11px;
+    background-color: #CCCCCC;
+	border: 2px solid #000000;
+    color: #000000;
+}
+
+
+input.color {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+	text-align: center;
+}
+
+input.colorerror {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    background-color: #CCCCCC;
+	border: 2px solid #000000;
+    color: #000000;
+    padding: 2px;
+}
+
+input.number {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+	width: 50px;
+	text-align: right;
+}
+
+input.numbererror {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+	width: 50px;
+	text-align: right;
+    background-color: #CCCCCC;
+	border: 2px solid #000000;
+    color: #000000;
+    padding: 2px;
+}
+
+input.date {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+	text-align: center;
+}
+
+input.dateerror {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+	text-align: center;
+	padding: 0px;
+    background-color: #CCCCCC;
+	border: 2px solid #000000;
+    color: #000000;
+    padding: 2px;
+}
+
+input.time {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+	text-align: center;
+}
+
+input.timeerror {
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+	text-align: center;
+    padding: 2px;
+    background-color: #CCCCCC;
+	border: 2px solid #000000;
+    color: #000000;
+}
+
+input.radio {
+	border: 0px;
+	background-color: transparent;
+}
+
+input.checkbox {
+	border: 0px;
+	background-color: transparent;
+}
+
+input.submit {
+    background-color: #CCCCCC;
+    border: 1px solid #000000;
+    color: #000000;
+    padding: 0px;
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+p.submit input {
+    text-align: center;
+}
+
