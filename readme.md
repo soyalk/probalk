@@ -47,10 +47,11 @@ Probalk  is a script that was made for educationals purposes just to demonstrate
 -OR
 
 - ```bash probalk.sh```
-#### credit 
-- [minanagehsalalma](https://github.com/minanagehsalalma)
-- [abdou-w10](https://github.com/abdou-w10)
-- [hackshowteam](https://www.hackshowblog.com/)
+#### - credit 
+- [minanagehsalalma](https://github.com/minanagehsalalma) cowork on a new attack
+- [abdou-w10](https://github.com/abdou-w10) Testing and help on bugs fix
+- [hackshowteam](https://www.hackshowblog.com/) Moroccan isp fake pages 
+- [Evil SKN AUthor](https://github.com/Mzoum)  fake pages
 #### Disclaimer
 -----------------------------------------------------
 ##### To Use The Script You must be Permitted By Network Admin Or must be your network any use out of law is at your responsibility
