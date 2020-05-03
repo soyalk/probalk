@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+/*========================================================================================================
+	SPECIFIC STYLES FOR TELEFONICA BRANDING
+========================================================================================================*/
+
+/*========================================================================================================
+	HEADER
+========================================================================================================*/
+
+#panel_header {
+	visibility: visible;
+	background: url(../images/brd_telefonica/header_t2.png?version=p) no-repeat;	
+}
+
+.home_station{
+	background: none;
+}
+
+.network_map{
+	float: right;
+	margin-top: 14px;
+	/*margin-left: 635px;*/		
+}
+.movistar{
+	background: none;
+}
+
+.home_station{
+	margin-left: -0px;
+}
+
+.header_left{
+	/*width: 864px;*/
+	width: 858px;
+}
+
+/*========================================================================================================
+	DIALOG HEADER
+========================================================================================================*/
+.ui-dialog .ui-dialog-titlebar { 
+	background: url(../images/brd_telefonica/titlebar_t.png?version=p) repeat-x;
+}
+.dialog_faq { 
+	background: url(../images/brd_telefonica/faq_t.png) no-repeat; 					 
+}
+.dialog_faq:hover{
+	background: url(../images/brd_telefonica/faq_hover_t.png) no-repeat;			 
+}
+.ui-dialog .ui-dialog-titlebar-close { 
+	background: url(../images/dialog/cancel_sprite.png) no-repeat;						 
+		background-position: -44px 0;
+}
+.ui-dialog .ui-dialog-titlebar-close:hover { 
+	background-position: -66px 0;	
+}
+
+/*========================================================================================================
+	WELCOME SPLASH IMAGE
+========================================================================================================*/
+.welcomepan_icon{
+	background: url(../images/brd_telefonica/welcome_screen_t.png) no-repeat;	
+}
+
+.welcomepan_icon:hover{
+	background: url(../images/brd_telefonica/welcome_screen_t.png) 270px 0px; 	
+}
+.welcome_fav_icon{
+	background: url(../images/brd_telefonica/favorites_t.png) no-repeat;	
+	width: 217px;
+	height: 54px;	
+}
+.welcome_fav_icon.hover{
+	background: url(../images/brd_telefonica/favoritos_t.png)  217px 0px;	
+}
+/* HELP DIALOG */
+#help_dialog{
+	border: 3px solid #8bc1e6;
+}
+
+/* PRINTER AND USB ICONS */
+.usb_icon{
+	background: url(../images/brd_telefonica/down_usb_t.png) no-repeat;	
+}
+.print_icon{
+	background: url(../images/brd_telefonica/down_print_t.png) no-repeat;
+}
+
+
+/*OTHERS*/
+.wifi_ico{
+	background:       url(../images/brd_telefonica/router_t.png) no-repeat;
+}
+.imgStiker{
+	background-image: url(../images/brd_telefonica/gateway_sticker.png);
+}
+.imgDefaultStiker{
+	background-image: url(../images/brd_telefonica/gateway_sticker.png);
+}
+
+.gateway_reset_ico{
+	width:100px; 
+	height:113px;
+	background-image: url(../images/brd_telefonica/gateway_reset.png);
+}
+#welcome_gateway{
+	background: url(../images/brd_telefonica/welcome_gateway_g.png) no-repeat;
+	width: 217px;
+	height: 270px;
+	margin: 54px 63px 0 40px;
+	float:left;	
+	
+	/*SÓLO PARA LA DEMO CON LA IMAGEN DE PASARELA NUEVANUEVA*/
+	/*background: url(../images/brd_telefonica/router_nuevo.png) no-repeat;
+	background-position: -0px 0;
+	width: 349px;
+	margin: 173px 0px 0 -26px;*/
+}

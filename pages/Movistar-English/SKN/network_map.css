@@ -1,0 +1,1429 @@
+@charset "utf-8";
+/*========================================================================================================
+	CONTENT
+========================================================================================================*/
+
+.house {
+	background-image: url(../images/networkMap/house.png);
+	width: 940px;
+	height: 538px;
+}
+
+.internet{
+	position: absolute;
+	width: 65px;
+	height: 66px;
+	margin-top: 262px;
+}
+.internet_txt{
+	position: absolute;	
+	width: 66px;
+	text-align: center;	
+	font-size: 12px;		
+	margin-top: 334px;	
+}
+
+.internet_txt .internet_des{
+	margin-top: 10px;
+	display: block;
+	color: #505050;
+	font-size: 11px;
+	line-height: 14px;
+}
+
+#iconInternet {
+	position: absolute;
+	background: url(../images/networkMap/internet.png) no-repeat;
+	width: 65px;
+	height: 66px;	
+	/*margin: 100px 0 0 0;	*/
+}
+#iconInternet[INTERNET_STATUS="INTERNET_OK"]{ background-position: -0px 0; }
+#iconInternet[INTERNET_STATUS="ICON_OVER"]{ background-position: -65px 0; }
+#iconInternet[INTERNET_STATUS="NO_INTERNET"]{ background-position: -130px 0; }
+
+.threeG{
+	position: absolute;
+	background: url(../images/networkMap/3g_bg.png) no-repeat;
+	width: 82px;
+	height: 78px;	
+	margin: 210px 0 0 100px;	
+}
+.threeG_ico{
+	display: block;
+	background: url(../images/networkMap/3G.png) no-repeat;
+	width: 56px;
+	height: 40px;	
+	margin: 4px auto 0 auto;
+}
+
+.threeG_ico[power3g="-1"]{background-position: -0px 0;}
+.threeG_ico[power3g="0"]{background-position: -56px 0;}
+.threeG_ico[power3g="1"]{background-position: -112px 0;}
+.threeG_ico[power3g="2"]{background-position: -168px 0;}
+.threeG_ico[power3g="3"]{background-position: -224px 0;}
+.threeG_ico[power3g="4"]{background-position: -280px 0;}
+
+.threeG_ico.hover[power3g="-1"]{background-position: -336px 0;}
+.threeG_ico.hover[power3g="0"]{background-position: -336px 0;}
+.threeG_ico.hover[power3g="1"]{background-position: -392px 0;}
+.threeG_ico.hover[power3g="2"]{background-position: -448px 0;}
+.threeG_ico.hover[power3g="3"]{background-position: -504px 0;}
+.threeG_ico.hover[power3g="4"]{background-position: -560px 0;}
+
+.threeG_txt{
+	display: block;
+	margin: 4px 33px;
+	font-size: 12px;
+}
+.adsl{
+	position: absolute;
+	background: url(../images/networkMap/adsl_bg.png) no-repeat;
+	width: 82px;
+	height: 78px;	
+	margin: 308px 0 0 100px;	
+}
+.adsl_ico{
+	display: block;
+	background: url(../images/networkMap/app_adsl.png) no-repeat;
+	background-position: -76px 0;
+	width: 32px;
+	height: 31px;	
+	margin: 22px auto 0 auto;
+}
+
+.adsl_ico[powerAdsl="down"]{background-position: -76px 0;}
+.adsl_ico[powerAdsl="up"]{background-position: -152px 0;}
+
+#adsl[adslactive=true] .adsl_ico{
+	background-position: -152px 0;
+}
+
+#adsl .adsl_ico.hover{
+	background-position: -114px 0;
+}
+
+.adsl_txt{
+	display: block;
+	margin: 5px 26px;
+	font-size: 12px;
+}
+
+#wifi{
+	position: absolute;	
+	margin: 210px 0 0 285px;	
+	width: 140px;
+	text-align: center;
+}
+
+.wifi_ico{
+	width: 89px;
+	height: 103px;	
+		
+	background-position: -0px 0; 
+	display: block;
+	margin: 20px auto 6px auto;
+}
+
+
+.wifi_ico[color="grey"]{ background-position: -0px 0; }
+.wifi_ico[color="green"]{ background-position: -89px 0; }
+.wifi_ico[color="blue"]{ background-position: -178px 0; }
+.wifi_ico[color="orange"]{ background-position: -267px 0; }
+.wifi_ico[color="red"]{ background-position: -356px 0; }
+.wifi_ico.hover{ background-position: -178px 0; }
+
+
+.gateway{	
+	display: none;
+	margin: 0 auto;
+}
+.wifi_txt{	
+	margin-top: 4px;
+}
+#home_content{	
+	width:380px;	
+}
+.scroll{
+	margin: 194px 0 0 510px;
+	position: absolute;		
+}
+.fix_height{
+	height:160px!important;
+}
+.height{
+	height:160px;
+}
+.device {	
+	float: left;
+	position: relative;
+	height: 60px;
+	width: 91px;	
+	text-align: center;
+	margin: 8px 0 30px 0;	
+	z-index: 0;			
+}
+
+.device_ico{		
+	margin: 0 auto;			
+}
+.device_txt_connected {	
+	display: block;	
+	margin-top:5px;
+}
+.device_txt_disconnect{	
+	display: block;
+	color:#a4a6a9;	
+	margin-top:5px;
+}
+.device .device_ico{	
+	height: 35px;
+	width: 38px;
+	background: url(../images/networkMap/devices.png) no-repeat;
+}
+
+/*CONNECTED DEVICES*/
+/*.device[connected=true] .device_ico{	background: url(../images/networkMap/devices.png) no-repeat;	}*/
+/*UNCONNECTED DEVICES*/
+/*.device[connected=false] .device_ico{	background: url(../images/networkMap/devices.png) no-repeat;	}*/
+/*OVER EFFECT*/
+/*.device[isover=true] .device_ico{		background: url(../images/networkMap/devices.png) no-repeat;	}*/
+
+.device[connected=true][deviceType="HardDrive"] .device_ico		{	background-position: 0px -35px;	}
+.device[connected=true][deviceType="CellPhone"]  .device_ico	{	background-position: -38px -35px;	}	
+.device[connected=true][deviceType="Laptop"]  .device_ico		{	background-position: -76px -35px;	}
+.device[connected=true][deviceType="MobileDevice"] .device_ico	{	background-position: -114px -35px;	}	
+.device[connected=true][deviceType="HiFi"] .device_ico			{	background-position: -152px -35px;	}	
+.device[connected=true][deviceType="Other"] .device_ico			{	background-position: -190px -35px;	}
+.device[connected=true][deviceType="DesktopComputer"] .device_ico{	background-position: -228px -35px;	}
+.device[connected=true][deviceType="Printer"] .device_ico		{	background-position: -266px -35px;	}
+.device[connected=true][deviceType="GameConsole"] .device_ico	{	background-position: -304px -35px;	}
+.device[connected=true][deviceType="TVset"] .device_ico			{	background-position: -342px -35px;	}
+.device[connected=true][deviceType="Unknown"] .device_ico		{	background-position: -380px -35px;	}
+
+.device[connected=false][deviceType="HardDrive"] .device_ico	{	background-position: 0px -70px;	}
+.device[connected=false][deviceType="CellPhone"]  .device_ico	{	background-position: -38px -70px;	}	
+.device[connected=false][deviceType="Laptop"]  .device_ico		{	background-position: -76px -70px;	}
+.device[connected=false][deviceType="MobileDevice"] .device_ico	{	background-position: -114px -70px;	}	
+.device[connected=false][deviceType="HiFi"] .device_ico			{	background-position: -152px -70px;	}	
+.device[connected=false][deviceType="Other"] .device_ico		{	background-position: -190px -70px;	}
+.device[connected=false][deviceType="DesktopComputer"] .device_ico{	background-position: -228px -70px;	}
+.device[connected=false][deviceType="Printer"] .device_ico		{	background-position: -266px -70px;	}
+.device[connected=false][deviceType="GameConsole"] .device_ico	{	background-position: -304px -70px;	}
+.device[connected=false][deviceType="TVset"] .device_ico		{	background-position: -342px -70px;	}
+.device[connected=false][deviceType="Unknown"] .device_ico		{	background-position: -380px -70px;	}
+
+.device[isover=true][deviceType="HardDrive"] .device_ico	{	background-position: 0px 0;	}
+.device[isover=true][deviceType="CellPhone"]  .device_ico	{	background-position: -38px 0;	}	
+.device[isover=true][deviceType="Laptop"]  .device_ico		{	background-position: -76px 0;	}
+.device[isover=true][deviceType="MobileDevice"] .device_ico	{	background-position: -114px 0;	}	
+.device[isover=true][deviceType="HiFi"] .device_ico			{	background-position: -152px 0;	}	
+.device[isover=true][deviceType="Other"] .device_ico		{	background-position: -190px 0;	}
+.device[isover=true][deviceType="DesktopComputer"] .device_ico{	background-position: -228px 0;	}
+.device[isover=true][deviceType="Printer"] .device_ico		{	background-position: -266px 0;	}
+.device[isover=true][deviceType="GameConsole"] .device_ico	{	background-position: -304px 0;	}
+.device[isover=true][deviceType="TVset"] .device_ico		{	background-position: -342px 0;	}
+.device[isover=true][deviceType="Unknown"] .device_ico		{	background-position: -380px 0;	}
+
+.device_interface{
+	float: right;
+	margin: -41px 8px 0 0px;
+	width: 18px;
+	height: 17px;
+	
+	background: url(../images/networkMap/conexion.png) no-repeat;
+}
+.device[interface="WiFi"]	 .device_interface{		background-position: 0px 0;	}
+.device[interface="USB"]	 .device_interface{		background-position: -18px 0;	}
+.device[interface="Ethernet"] .device_interface{	background-position: -36px 0;	}
+
+#applications{
+	position: absolute;		
+	margin: 390px 0 0 500px;	
+	width: 400px;	
+	text-align: center;	
+	zoom: 0;
+}
+.applications_ico{	
+	background: url(../images/networkMap/app_adsl.png) no-repeat;
+	background-position: 0px 0;
+	width: 38px;
+	height: 31px;
+	margin: 0;	
+	margin-right: 10px;
+	display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    *display: inline;    
+}
+.applications_ico.hover{ background-position: -38px 0; }
+.applications_txt{	
+	display: inline;	
+}
+.applications_icoLittle{	
+	background: url(../images/dialog/app_dev_blue_light.png) no-repeat;
+	width: 25px;
+	height: 24px;
+	margin-top:7px;	
+	float:right;
+}
+.applications_icoLittle.hover{ background: url(../images/dialog/app_dev_blue.png) no-repeat; }
+
+.adsl_icoLittle{
+    background: url(../images/ipmode1.png) no-repeat;
+	width: 25px;
+	height: 24px;
+	margin-top:10px;	
+	zoom: 1;
+	display: -moz-inline-stack;
+    display: inline-block;
+	vertical-align: middle;
+	float:right;
+	*display: inline;
+}
+
+.adsl_icoLittle.hover{ background: url(../images/ipmode.png) no-repeat; }
+
+.ipv4_icon1{
+   background: url(../images/dialog/Ipv4_en.png) no-repeat;	
+   background-position: 95%  20%;
+}
+
+.ipv4_icon{
+   background: url(../images/dialog/Ipv4_es.png) no-repeat;	
+   background-position: 95%  20%;
+}
+
+.ipv6_icon1{
+   background: url(../images/dialog/Ipv6_en.png) no-repeat;	
+   background-position: 98%  20%;
+}
+
+.ipv6_icon{
+   background: url(../images/dialog/Ipv6_es.png) no-repeat;	
+   background-position: 98%  20%;
+}
+
+.ok_icon{
+    background: url(../images/ok.png) no-repeat;
+    background-position: center center;
+}
+
+.button_icon{
+   background: url(../images/button2.png) no-repeat;
+}
+
+.button_icon1{
+   background: url(../images/button1.png) no-repeat;
+}
+
+.button_icon2{
+   background: url(../images/button3.png) no-repeat;
+}
+/* ADVANCED SETTINGS: APPLICATIONS DIALOG */
+.dialog_faq_app{
+	margin-left: 718px;
+}
+.dialog_close_app{
+	margin-left: 748px;
+}
+.applications{
+	/*background: url(../images/tmp/applications.png) no-repeat;*/
+	padding: 19px;
+}
+.applications_top{
+	height: 346px; 
+}
+.applications_left{
+	width:176px;	
+	float:left;	
+}
+.applications_right{
+	width:554px;	
+	padding-left: 20px;
+	float:left;	
+}
+.applications_divider{
+	background: url(../images/dialog/vertical_line.png);
+	width: 1px;
+	height: 342px;
+	float:left;
+}
+#applications_list{
+	margin-top:16px;	
+	width:176px;
+	height:284px;
+}
+.applications .edit_icon{
+	display: none;
+	cursor: pointer;
+}
+.application{
+	clear: both;
+	height: 22px;
+	color: #7091a7;
+	cursor: pointer;
+}
+.application:hover{	
+	color: #0086c3!important;
+	text-decoration: underline;
+}
+.application_selected{
+	clear: both;
+	height: 22px;
+	color: #0086c3;
+	font-weight:bold;
+}
+
+.application_assigned{
+	background-image: url(../images/dialog/devices_grey.png);
+	background-repeat:no-repeat;
+	width: 23px;
+	height: 19px;
+	margin-left: 8px;
+	float: left;
+	background-position: 0px 0;
+}
+.application_assigned[idIcon="Other"]{background-position: 0px 0;}
+.application_assigned[idIcon="TVset_1"]{background-position: -23px 0;}
+.application_assigned[idIcon="Laptop_1"]{background-position: -46px 0;}
+.application_assigned[idIcon="DesktopComputer_1"]{background-position: -69px 0;}
+.application_assigned[idIcon="Printer_1"]{background-position: -92px 0;}
+.application_assigned[idIcon="CellPhone_1"]{background-position: -115px 0;}
+.application_assigned[idIcon="HardDrive_1"]{background-position: -138px 0;}
+.application_assigned[idIcon="Unknown"]{background-position: -161px 0;}
+.application_assigned[idIcon="GameConsole_1"]{background-position: -184px 0;}
+.application_assigned[idIcon="MobileDevice_1"]{background-position: -207px 0;}
+.application_assigned[idIcon="HiFi_1"]{background-position: -230px 0;}
+
+.application_txt{
+	float: left;	
+}
+.application_arrow{
+	background: url(../images/dialog/arrow.png);
+	width: 10px;
+	height: 19px;
+	float: right;
+}
+.application_name{
+	font-size: 14px;	
+	color: #0086c3;
+	float: left;
+}
+
+.applications_controls .plus_icon{
+	float:left;	
+}
+.page_numbers{	
+	color: #7091a7;
+	display: block;
+	font-size: 10px;	
+}
+.controls_right .line {
+	background-color: #e0e0e0;
+	margin: 4px 5px;		
+}
+.page_numbers_selected{
+	color: #0086c3;
+	font-weight:bold;
+	display: block;
+	font-size: 10px;
+	float: right;
+}
+
+.applications_controls{	
+	margin: 10px 10px 0 0;	
+}
+.rules_title{	
+	height: 30px;
+	margin-top: 38px;		
+	line-height: 20px;	
+}
+.scroll_applications{
+	position: relative;
+	display: block;
+	margin-top: 20px;
+	height: 203px;	
+}
+#rules_list{	
+	width:554px;
+	height:203px;
+}
+.rule{
+	clear: both;
+	height: 34px;	
+}
+.rule span{
+	float: left;
+	margin-right: 4px;
+	padding-top: 3px;
+}
+.rule input{
+	float: left;	
+	width: 40px;
+	height: 18px;	
+	margin: 0 4px 0 0;
+}
+
+.rule .minus_icon{
+	margin: 2px 0 0 4px;
+}
+.applications .jquery-selectbox{
+	width: 260px;
+}
+.applications .jquery-selectbox-list {
+	width: 256px;
+	max-height: 64px;
+}
+.applications .jquery-selectbox-item, .rule .jquery-selectbox-item {
+	line-height: 22px;
+}
+.rule .jquery-selectbox{
+	width: 102px;
+	float: left;
+}
+.rule .jquery-selectbox-list {
+	width: 98px;
+	max-height: 100px;
+}
+.rule .jquery-selectbox-currentItem {
+	padding: 0 0 0 4px;	
+}
+.rule .iPhoneCheckContainer {	
+	width: 118px;
+	margin-right:4px;
+	padding: 0;}
+.rule .iPhoneCheckHandle{
+	width: 34px;
+	margin:0; }
+.rule label.iPhoneCheckLabelOn span {	
+	padding-left:4px;
+	margin:0;
+	padding-top: 0px;
+}
+
+.rule label.iPhoneCheckLabelOff span {
+	float: right;
+	margin: 0;
+	padding-right:4px;
+	padding-top: 0px;
+}
+
+.application_device{
+	margin: 14px 32px 0 0;
+	float:right;	
+}
+.application_device .select{
+	margin-left: 10px;
+	width: 260px;
+}
+
+/* WIFI CONFIGURATION DIALOG */
+
+.dialog_faq_wifi{
+	margin-left:378px;
+}
+.wifi{
+	width: 450px;
+}
+.wifi_parte{
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+.wifi_firm{
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+.wifi_line{
+	clear:both;
+}
+.wifi_label{
+	float: left;
+	padding-left: 17px;
+	/*background-color: #f00;*/
+	width:90px;
+	overflow: hidden;		
+}
+
+.wifi_label1{
+	float: left;
+	padding-left: 80px;
+	/*background-color: #f00;*/
+	width:50px;
+	overflow: hidden;
+	margin-top:10px
+}
+
+.wifi_input{
+	float: left;
+	padding: 0;
+	/*background-color: yellow;*/
+	width:161px;
+	height:23px;	
+}
+
+.wifi_input1{
+	float: left;
+	padding: 0;
+	/*background-color: yellow;*/
+	width:176px;
+	height:23px;
+	margin-top:10px
+}
+
+.wifi_input input{
+	margin: 1px 1px 1px 11px;
+	width:141px;
+	line-height: 19px;
+}
+
+.wifi_input1 input{
+	margin: 1px 1px 1px 11px;
+	width:141px;
+	line-height: 19px;
+}
+
+.wifi_input select{
+	margin: 5px 1px 2px 11px;
+	width:149px;
+}
+.wifi_sep{
+	clear:both;
+	height:15px;
+	/*background-color: blue;*/
+}
+
+.wifi_input .dhcp_dir{
+	margin: 1px 0px 2px 4px;
+	float: left;
+	width: 35px;	
+}
+
+.wifi_input .dns_dir{
+	margin: 1px 0px 2px 4px;
+	float: left;
+	width: 25px;	
+}
+
+.wifi_input1 .dhcp_dir1{
+	margin: 1px 0px 2px 4px;
+	float: left;
+	width: 28px;	
+}
+
+.wifi_input .inicio_dir{
+	margin: 0px 0px 0px 0px;
+	float: left;
+	width: 100px;
+	text-align: right;	
+}
+
+.wifi_input1 .inicio_dir1{
+	margin: 0px 0px 0px 0px;
+	float: left;
+	width: 100px;
+	text-align: right;	
+}
+
+.wifi_input .iPhoneCheckContainer {	
+	width: 150px;	 
+}
+.wifi_input .iPhoneCheckHandle{
+	/*width: 38px;*/
+	width: 30px; 
+}
+.wifi_input label.iPhoneCheckLabelOff{
+	text-align: left;
+	
+}
+.colored_iphone{
+	font-size: 12px;
+}
+.colored_iphone .iPhoneCheckLabelOff{
+	color: #aa6060; 
+} 	
+.colored_iphone .iPhoneCheckLabelOn{
+	color: #6c9b00;
+}
+.wifi label.iPhoneCheckLabelOff span {
+    padding: 0 8px 0 44px;
+    
+}
+.wifi label.iPhoneCheckLabelOn span {
+      padding-left: 8px;
+}
+.wifi_input .jquery-selectbox{
+	width: 148px;	
+	margin: 0px 4px 0px 0;
+}
+.wifi .jquery-selectbox .jquery-selectbox-list{
+	max-height: 96px;
+}
+.wifi_input.wifi_input_small, 
+.wifi_input_small .iPhoneCheckContainer {
+	width: 110px;
+	/*float: right;*/
+	margin-left: 5px;
+}
+
+/* NAT CONFIGURATION DIALOG */
+.dialog_faq_nat {
+	margin-left: 378px;
+}
+
+.nat {
+	width: 450px;
+}
+
+.nat_line {
+	clear: both;
+}
+
+.nat_label {
+	float: left;
+	padding-left: 17px;
+	/*background-color: #f00;*/
+	width: 90px;
+	overflow: hidden;
+}
+
+.nat_parte {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.nat_input {
+	float: left;
+	padding: 0;
+	/*background-color: yellow;*/
+	width: 161px;
+	height: 23px;
+}
+
+.nat_input .dhcp_dir{
+	margin: 1px 0px 2px 4px;
+	float: left;
+	width: 35px;	
+}
+
+.nat_input .inicio_dir{
+	margin: 0px 0px 0px 0px;
+	float: left;
+	width: 100px;
+	text-align: right;	
+}
+
+.nat_sep {
+	clear: both;
+	height: 15px;
+	/*background-color: blue;*/
+}
+
+.nat_input .iPhoneCheckContainer {	
+	width: 150px;	 
+}
+.nat_input .iPhoneCheckHandle{
+	/*width: 38px;*/
+	width: 30px; 
+}
+.nat_input label.iPhoneCheckLabelOff{
+	text-align: left;
+}
+
+.nat_input label.iPhoneCheckLabelOn span{
+      padding-left: 8px;
+}
+.nat_input label.iPhoneCheckLabelOff span {
+   padding: 0 8px 0 44px;
+}
+
+
+/* FIRMWARE CONFIGURATION DIALOG */
+
+.dialog_faq_firmware {
+	margin-left: 628px;
+}
+
+.firmware {
+	width: 700px;
+}
+
+.firmware_parte {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.firmware_firm {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.firmware_line {
+	clear: both;
+}
+.firmware_label {
+	float: left;
+	padding-left: 17px;
+	/*background-color: #f00;*/
+	width:90px;
+	overflow: hidden;		
+}
+
+.firmware_sep {
+	clear: both;
+	height: 15px;
+	/*background-color: blue;*/
+}
+
+/* PROFILE CONFIGURATION DIALOG */
+.dialog_faq_profile {
+	margin-left: 558px;
+}
+
+.profile {
+	width: 630;
+}
+
+.profile_parte {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.profile_firm {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.profile_line {
+	clear: both;
+}
+.profile_label {
+	float: left;
+	padding-left: 17px;
+	/*background-color: #f00;*/
+	width:90px;
+	overflow: hidden;		
+}
+
+.profile_sep {
+	clear: both;
+	height: 15px;
+	/*background-color: blue;*/
+}
+
+/* BACKUP CONFIGURATION DIALOG */
+.dialog_faq_backup {
+	margin-left: 558px;
+}
+
+.backup {
+	width: 630;
+}
+
+.backup_parte {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.backup_firm {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.backup_line {
+	clear: both;
+}
+.backup_label {
+	float: left;
+	padding-left: 17px;
+	/*background-color: #f00;*/
+	width:90px;
+	overflow: hidden;		
+}
+
+.backup_sep {
+	clear: both;
+	height: 15px;
+	/*background-color: blue;*/
+}
+
+/* UPDATE CONFIGURATION DIALOG */
+.dialog_faq_update {
+	margin-left: 558px;
+}
+
+.update {
+	width: 630;
+}
+
+/* PCCONFIG DIALOG */
+.dialog_faq_pcconfig{
+	margin-left: 558px;
+}
+
+.pcconfig {
+	width: 630;
+}
+
+.pcconfig_parte {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.pcconfig_firm {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.pcconfig_line {
+	clear: both;
+}
+.pcconfig_label {
+	float: left;
+	padding-left: 0;
+	/*background-color: #f00;*/
+/*	width:90px;*/
+	overflow: hidden;		
+}
+
+.pcconfig_sep {
+	clear: both;
+	height: 15px;
+	/*background-color: blue;*/
+}
+.pcconfig_input{
+	float: left;
+	padding: 2px;
+	/*background-color: yellow;*/
+/*	width:161px;*/
+	height:23px;	
+}
+/* UPDATE CONFIGURATION DIALOG */
+.dialog_faq_update {
+	margin-left: 558px;
+}
+
+.update {
+	width: 630;
+}
+
+.update_parte {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.update_firm {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.update_line {
+	clear: both;
+}
+.update_label {
+	float: left;
+	padding-left: 17px;
+	/*background-color: #f00;*/
+	width:90px;
+	overflow: hidden;		
+}
+
+.update_sep {
+	clear: both;
+	height: 15px;
+	/*background-color: blue;*/
+}
+
+/* SUMMARY CONFIGURATION DIALOG */
+.dialog_faq_summary {
+	margin-left: 558px;
+}
+
+.summary {
+	width: 630;
+}
+
+.summary_parte {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.summary_firm {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.summary_line {
+	clear: both;
+}
+.summary_label {
+	float: left;
+	/*padding-left: 17px;*/
+	/*background-color: #f00;*/
+	width:300px;
+	overflow: hidden;		
+}
+
+.summary_sep {
+	clear: both;
+	height: 15px;
+	/*background-color: blue;*/
+}
+
+/* SUCCESS CONFIGURATION DIALOG */
+.dialog_faq_success {
+	margin-left: 528px;
+}
+
+.success {
+	width: 600;
+}
+
+.success_parte {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.success_firm {
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+
+.success_line {
+	clear: both;
+}
+.success_label {
+	float: left;
+	/*padding-left: 17px;*/
+	/*background-color: #f00;*/
+	width:300px;
+	overflow: hidden;		
+}
+
+.success_sep {
+	clear: both;
+	height: 15px;
+	/*background-color: blue;*/
+}
+
+.pass_level_box{
+	float: left;
+	padding: 0 11px 0 11px;
+	/*background-color: yellow;*/
+	width:125px;
+	height:23px;
+}
+#pass_level_title, #pass_level_value{
+	float:left;
+	font-size: 9px;
+	line-height:10px;
+}
+#pass_level_value{
+	margin: 2px 0 0 0;
+}
+
+#CONF_VENDOR a{
+	font-size: 9px;	
+}
+
+/* MAC FILTER */
+.dialog_faq_mac{
+	margin-left:460px;
+}
+.mac{
+	width: 530px;
+}
+.mac_parte{
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+.mac_firm{
+	padding: 10px 17px 0px 17px;
+	line-height: 23px;
+}
+.mac_line{
+	clear:both;
+}
+
+.mac_label{
+	float: left;
+	padding-left: 17px;
+	/*background-color: #f00;*/
+	width:90px;
+	overflow: hidden;		
+}
+
+.mac_info{
+  float: left;
+  padding-left: 17px;
+  overflow:hidden;
+}
+
+.mac_sep{
+	clear:both;
+	height:15px;
+	/*background-color: blue;*/
+}
+
+.mac_add{	
+	margin: 10px 10px 0 0;	
+}
+.mac_add .plus_icon{
+	float:left;	
+	vertical-align: middle;
+    zoom: 1;
+    *display: inline;
+}
+
+/* DEVICE CONFIGURATION DIALOG */
+.dialog_faq_dev{
+	margin-left: 378px;
+}
+.conf_devices{	
+	padding: 19px;
+	/*height:138px;*/	
+}
+.conf_dev_app{
+	clear:both;
+	padding: 11px 19px 11px 19px;
+}
+#devName input{	
+	width:173px;
+}
+.scroll_devApp{		
+	margin-top: 30px;	
+	height: 110px;	
+	display: block;
+}
+#app_content{	
+	width:414px;		
+}
+
+#app_content.fix_height{
+	height:110px!important;
+}
+#app_content.height{
+	height:110px;
+}
+#app_content input{	
+	border-style: none;
+	margin-top: 0;
+	padding-top:0;
+	display: inline-block;
+	vertical-align: middle;
+	width:20px;	
+}
+.dev_appContent{
+	width:360px;
+}
+.dev_txtCheck{
+	padding: 0 0 18px 4px; 
+	height: 12px;	
+	display: block;
+	vertical-align: top;
+}
+.dev_imgCheck{
+	margin-top:0px;
+}
+.appCheck_content{
+	width:195px;
+	float:left;	
+}
+.dev_divTxt1{
+	float:left;
+	width:117px;
+}
+.dev_divTxt2{
+	float:left;
+	width:180px;
+}
+.dev_divTxt3{
+	float:left;
+	width:300px;
+}
+.dev_left{
+	background: url(../images/dialog/dev_ico_bg.png) no-repeat;
+	width: 98px;
+	height: 77px;
+	float: left;
+}
+.dev_right{
+	float: left;
+	width: 300px;
+	padding: 0 0 0 14px;	
+}
+.dev_ico_big{
+	width: 62px;
+	height: 62px;	
+	margin: 8px auto;	
+}
+.dev_line{ 
+	clear:both;
+	line-height: 32px;
+	width:300px;	
+}
+.dev_ico_big{			background: url(../images/dialog/dispositivos_g.png) no-repeat;}
+
+.dev_ico_big[idIcon="HiFi_1"] {				background-position: 0px 0;}
+.dev_ico_big[idIcon="HardDrive_1"] {		background-position: -62px 0;}
+.dev_ico_big[idIcon="GameConsole_1"] {		background-position: -124px 0;}
+.dev_ico_big[idIcon="DesktopComputer_1"] {	background-position: -186px 0;}
+.dev_ico_big[idIcon="CellPhone_1"] {		background-position: -248px 0;}
+.dev_ico_big[idIcon="Unknown_1"] {			background-position: -310px 0;}
+.dev_ico_big[idIcon="TVset_1"] {			background-position: -372px 0;}
+.dev_ico_big[idIcon="Printer_1"] {			background-position: -434px 0;}
+.dev_ico_big[idIcon="Other_1"] {			background-position: -496px 0;}
+.dev_ico_big[idIcon="MobileDevice_1"] {		background-position: -558px 0;}
+.dev_ico_big[idIcon="Laptop_1"] {			background-position: -620px 0;}
+
+.conf_app{
+	width: 410px;
+	height: 30px;
+	margin-top:10px;
+}
+.conf_appTxt{
+	padding:10px 0px 10px 6px;
+	float:right;
+}
+.conf_wifiAdv{
+	padding: 0px 0px 0px 20px;
+	float: left;
+	font-weight: bold;
+}
+.conf_wifiFirm{
+	padding: 0px 0px 0px 60px;
+	float: left;
+	font-weight: bold;
+	margin-top:-10px;
+}
+.forget_dev{
+	float:right;
+	margin-right:4px;
+	margin-top:-4px;
+}
+.conf_devices .jquery-selectbox{
+	width: 180px;
+}
+.conf_devices .jquery-selectbox-list {
+	width: 176px;
+	/*max-height: 90px;*/
+}
+.conf_devices .jquery-selectbox-item {
+	line-height: 22px;
+}
+
+/* CHANGE PASSWORD DIALOG */
+.password_dialog{
+	background: url(../images/tmp/password.png) no-repeat;
+	width: 790px;
+	height: 490px;	
+}
+
+/* INTERNET ERROR DIALOG */
+.dialog_faq_int{
+	margin-left: 378px;
+}
+
+.dialog_faq_adsl{
+   margin-left: 410px;
+}
+
+.internet_error_dialog{
+	/*background: url(../images/tmp/internet_error.png) no-repeat;*/
+	width: 450px;
+	/*height: 432px;	*/
+}
+/*ADSL DIALOG */
+.adsl_dialog{
+   width: 478px;
+}
+/* THREEG DIALOG */
+.dialog_faq_int{
+	margin-left: 378px;
+}
+.threeg_dialog{
+	width: 450px;
+}
+.threeg_parte{
+	padding: 20px 17px 0px 17px;
+	line-height: 23px;
+}
+.threeg_line{
+	clear:both;
+}
+
+.threeg_label{
+	float: left;
+	padding-left: 80px;
+	/*background-color: #f00;*/
+	width:50px;
+	overflow: hidden;
+	margin-top:10px;		
+}
+.threeg_input{
+	float: left;
+	padding: 0;
+	/*background-color: yellow;*/
+	width:40px;
+	height:23px;
+	margin-top:10px;		
+}
+
+.threeg_input input{
+	margin: 1px 1px 1px 11px;
+	width:40px;
+	vertical-align: middle;
+}
+.threeg_checkbox{
+	margin-left:160px;
+	
+}
+.threeg_input .iPhoneCheckContainer {	
+	width: 160px;	
+}
+.threeg_input .iPhoneCheckHandle{
+	width: 30px; 
+}
+.threeg_input label.iPhoneCheckLabelOff{
+	text-align: left;
+}
+
+.threeg_input label.iPhoneCheckLabelOn span{
+      padding-left: 8px;
+}
+.threeg_input label.iPhoneCheckLabelOff span {
+   padding: 0 8px 0 44px;
+}
+
+/* PRINTER AND USB INSTALLATION */
+.dialog_faq_pri,.dialog_faq_usb{
+    margin-left: 378px;
+}
+.dialog_faq_pri_mac,.dialog_faq_usb_lin{
+    margin-left: 578px;
+}
+.print_inst,.usb_inst{    
+    padding: 20px 25px 10px 20px;
+}
+.print{
+    margin-top:3px;
+}
+#print_img_cont{
+    padding-left:22px;
+}
+#print_desc_lin,#usb_desc_lin {
+    margin-top:10px;
+}
+
+.usb_icon, .print_icon{
+	display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    *display: inline;
+	margin: 4px 0 0 -6px;
+}
+.usb_icon{
+    height:50px;
+    width:51px;	
+}
+.print_icon{
+    height:50px;
+    width:51px;
+}
+.usb_txt, .print_txt{
+	display: inline-block;	
+}
+.usb:hover a, .print:hover a{
+	color: #7091a7;
+}
+.button_box_cancel{
+    height: 21px;
+    margin-left: 120px;
+    float:left;
+}
+.button_box_continue{
+    height: 21px;
+    float:left;
+    margin-left: 49px;
+}
+
+.usb_body{
+    height:182px;
+}
+
+.usb_desc{
+    height:40px;
+    padding:12px 25px 0 19px;
+}
+.usb_infdev{
+    height:119px;
+}
+.usb_infdevtxt{
+    /*float:left;*/
+    height:126px;
+    margin-left:51px;
+    width:190px;
+    position:relative;
+}
+.usb_rect{
+    width:17px;
+    height:8px;
+    float:left;
+    margin-top:5px;
+    margin-right:5px;
+}
+.usb_freecol{
+    background-color:#4bb2c5;
+    color:#4bb2c5;
+}
+.usb_usedcol{
+    background-color:#eaa631;
+    color:#eaa631;
+}
+.usb_txtleft{
+    float:left;
+}
+
+.usb_link{
+    margin-top:5px;
+    height:49px;
+}
+.usb_infdevpic{
+    height:126px;
+    /*margin-left:241px;*/
+    width:209px;
+    float:right;
+}
+.usb_margintop{
+    margin-top:2px;
+}
+
+.text_vertical{
+	height:16px;
+	line-height:16px;
+}
+
+.divcon{ 
+	float: right;
+	overflow: hidden;
+	margin-top:10px;
+	
+	background:#FFFFFF; 
+	border:1px solid #999;
+	position:static; 
+	padding:4px 4px 4px 2px; 
+	z-index:-1; 
+	display:inline; 
+
+	font-family:Verdana, Geneva, sans-serif; 
+	font-size:11px; 
+	line-height:16px;
+	color:#878787; 
+
+	-moz-border-radius:5px; 
+	-khtml-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	border-radius:5px;
+}
