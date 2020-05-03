@@ -1,0 +1,564 @@
+/**_________________________________________ General Style Section____________________________**/
+
+html, body, div, h1, h2, h3, h4, p, ul, ol, li, dl, dt, dd, td, input, select, textarea
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+}
+
+input, select, textarea
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        padding-right: 4px; padding-left: 4px; padding-bottom: 2px; MARGIN: 0px 5px 0px 0px; padding-top: 2px; white-space: nowrap
+}
+input, button
+{
+        padding: 2px 4px 4px 4px; margin: 0px 5px 0px 0px; white-space: nowrap;
+}
+
+/**_________________________________________ Form Table Style Section____________________________**/
+
+.r_tb
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:right;
+        font-weight: bold;
+}
+.c_tb
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:center;
+}
+.l_tb
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:left;
+}
+.br_tb
+{
+       font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:right;
+        font-weight: bold;
+}
+.bc_tb
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:center;
+        font-weight: bold;
+}
+.bl_tb
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:left;
+        font-weight: bold;
+}
+
+.c_r_tb
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:right;
+        background: #d5d6d9
+}
+
+.c_c_tb
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:center;
+        background: #d5d6d9
+}
+.c_l_tb
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:left;
+        background: #d5d6d9
+}
+
+.c_bc_tb
+{
+        font-family: Tahoma, Helvetica, Geneva, Arial, sans-serif;
+        font-size: 11px;
+        text-align:center;
+        font-weight: bold;
+        background: #d5d6d9
+}
+	
+
+
+/**_________________________________________ SideNav Style Section____________________________**/	
+
+#sidenav_basic
+{
+        background-color: #731472;
+        height: 25px;
+}
+
+#sidenav_container
+{
+		background-color: #d5d6d9;
+		border-color: #000000;
+		border-width: 1 1px;
+		border-style: none none none none;
+		width: 125px;
+}
+
+#sidenav
+{
+	font-size: 10px;
+	width: 125px;
+}
+	
+#sidenav ul
+{
+		margin: 0;
+		padding: 0;
+}
+#sidenav li
+{
+        list-style: none;
+        /*text-transform: uppercase;*/
+/*     
+        border-bottom: 1px solid #000000;
+*/     
+/*     
+		BORDER-RIGHT: #000000 1px solid;
+		BORDER-TOP: #000000 0px solid;
+		BORDER-LEFT: #000000 1px solid;
+*/
+}
+	
+#sidenavoff
+{
+        /*text-transform: uppercase;*/
+        border-bottom: 1px solid #000000;
+        
+        display: block;
+        color: #731472;
+        background-color: #F1F1F1;
+        font-size: 11px;
+        width: 125px;
+}
+	
+#sidenavoff a:link, #sidenavoff a:visited, #sidenavoff a:active
+{
+        display: block;
+		color: #731472;
+		background-color: transparent;
+		font-size: 11px;
+		text-decoration: underline;
+		padding: 4px;
+}
+
+#sidenavoff a:hover
+{
+		display: block;
+		color: #731472;
+		background-color: transparent;
+		font-size: 11px;
+		text-decoration: underline;
+		padding: 4px;
+}
+	
+#sidenavon a:link, #sidenavon a:visited, #sidenavon a:active
+{
+        border-bottom: 1px solid #000000;
+        display: block;
+        color: #000000;
+        background-color: transparent;
+        font-size: 11px;
+        text-decoration: none;
+        padding: 4px;
+}
+
+#sidenavon a:hover
+{
+        display: block;
+        color: #000000;
+        background-color: #F1F1F1;
+        font-size: 11px;
+        text-decoration: underline;
+        padding: 4px;
+}
+
+
+#sidehelp_container
+{
+        background-color: #7962AA;
+        border-color: #FFFFFF;
+        border-width: 1 1px;
+        border-style: none none none none;
+        width: 137px;
+        color: #FFFFFF;
+}
+
+/**_________________________________________ Hint Style Section____________________________**/	
+
+#help_text
+{
+        background-color: #d5d6d9;
+        color: #000000;
+        font-size: 11px;
+        padding-right: 3px;
+        padding-left: 5px;
+}
+#help_text A:link {
+        FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: rgb(226,152,97); BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+#help_text A:visited {
+        FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: rgb(226,152,97); BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+#help_text A:active {
+        FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: rgb(226,152,97); BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+#help_text A:hover {
+        FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #7962AA; BACKGROUND-COLOR: rgb(226,152,97); TEXT-DECORATION: underline
+}
+#help_text #bc {
+FONT-WEIGHT: bold;COLOR: rgb(226,152,97);
+}
+
+/**_________________________________________ Main Contain Style Section____________________________**/	
+#maincontent_container
+{
+        color: #000000;
+        background-color: #FFFFFF;
+}
+
+#maincontent
+{
+        color: #000000;
+        background-color: #F1F1F1;
+        padding: 0px;
+}
+#box_header
+{
+        border: 1px solid #7962AA;
+        padding: 0 10px 10px 10px;
+		text-indent:3px;
+        padding: 0 0 0 0;
+		text-indent:5px;
+        background-color: #ffffff;
+}
+
+.box
+{
+        border: 1px solid #7962AA;
+        margin: 5px 0 0 0;
+        padding: 0 0 0 0;
+        background-color: #FFFFFF;
+		width: 100%;
+}
+
+h1
+{
+        color: #731472;
+        background-color: #d5d6d9;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+		margin: 0 0 1px 0;
+        padding: 6px 6px 6px 10px;
+}
+
+h2
+{
+        color: #731472;
+        background-color: #d5d6d9;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin: 0 0 5px 0;
+        padding: 6px 6px 6px 10px;
+}
+
+.none
+{
+        text-transform: none;
+}
+
+h3
+{
+        margin: 0 0 4px 0;
+        padding: 18px 0 4px 0;
+        color: #13376B;
+        background-color: transparent;
+        font-size: 12px;
+        font-weight: bold;
+        border-bottom: gray;
+        border-width: 0 0 1px 0;
+        border-style: none none solid none;
+}
+
+DT {
+        MARGIN-TOP: 5px; FONT-WEIGHT: bold; MARGIN-BOTTOM: 5px
+}
+DD {
+        MARGIN-TOP: 5px; MARGIN-BOTTOM: 5px; MARGIN-LEFT: 0px
+}
+DD DL {
+        MARGIN-LEFT: 20px
+}
+UL {
+        MARGIN-LEFT: 30px
+}
+
+.help_example DL {
+        BORDER-RIGHT: gray 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: gray 1px solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 0px; BORDER-LEFT: gray 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #dfdfdf
+}
+.red
+{
+        color: #CC0000;
+        background-color: transparent;
+}
+
+/**_________________________________________ Foot Style Section____________________________**/	
+
+#footer_container
+{
+        background-color: #d5d6d9;
+        border-color: #FFFFFF;
+        border-width: 0 1px;
+        border-style: none solid none solid;
+        border-bottom: #FFFFFF;
+        height: 40px;
+        color: #FFFFFF;
+}
+
+/**_________________________________________ Header Style Section____________________________**/	
+
+#header_container
+{
+        background-color: #d5d6d9;
+        border-color: #FFFFFF;
+        border-width: 0 1px;
+        border-style: none solid none solid;
+        border-bottom: #FFFFFF;
+        height: 20px;
+        color: #000000;
+}
+
+#header_container a:link, #header_container a:visited, #header_container a:active
+{
+        color: #000000;
+        font-size: 10px;
+        text-decoration: none;
+}
+
+#header_container a:hover
+{
+        color: #000000;
+        font-size: 10px;
+        text-decoration: underline;
+}
+
+#topnav_container_r
+{
+	BORDER-TOP: #ffffff 0px;
+	BORDER-LEFT: #ffffff 1px solid;
+	BORDER-BOTTOM: #ffffff 0px;
+}
+#topnav_container_m /* header.gif container */
+{
+        BORDER-TOP: #ffffff 0px;
+        BORDER-BOTTOM: #ffffff 0px;
+}
+#topnav_container_l
+{
+        BORDER-RIGHT: #ffffff 1px solid;
+        BORDER-TOP: #ffffff 0px;
+        BORDER-BOTTOM: #ffffff 0px;
+}
+
+#topnav_container2 {  /* For Vertical Model Picture */
+        PADDING: 0px;
+        MARGIN: 0px;
+        BACKGROUND-COLOR: #f1f1f1
+}
+#topnav_container2 TD {
+        PADDING: 0px;
+        BACKGROUND-COLOR: #f1f1f1
+}
+#topnav_container2 #model {
+        BORDER-RIGHT: #000000 1px solid;
+        BORDER-TOP: #000000 1px solid;
+        BORDER-LEFT: #000000 1px solid;
+        WIDTH: 125px;
+        BORDER-BOTTOM: #000000 0px solid;
+}
+
+/**_________________________________________ Frame Body Style Section____________________________**/	
+.frame_body
+{
+        margin-top: 1;
+        margin-left: 0;
+        margin-right:0;
+        background-color: #f2f2f2;
+}
+.body_table /* Big Table to Contain Side + Main Contain + Hint */ 
+{
+  border: 0px;
+/*  cellpadding: 1;*/
+  width: 838;
+  background-color: #F1F1F1;
+  border-color: #000033;
+  height: 100%;
+}
+
+.table_restore  /* Small Table to show reboot messages */ 
+{
+  border: 0px;
+/*  cellpadding: 1;*/
+  width: 838;
+  background-color: #F1F1F1;
+  border-color: #000033;
+  height: 50%;
+}
+.wizardtable
+{
+  border: 1px;
+  width: 838;
+  background-color: #F1F1F1;
+  border-color: #000033;
+}
+
+td.h_td
+{
+          width: 138;
+}
+
+
+/**_________________________________________ SideNav Pop Style Section____________________________**/	
+#sidenav_pop {
+        FONT-SIZE: 11px;
+        position: absolute;
+        width: 125px;
+}
+#sidenav_pop UL {
+        PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; BORDER-BOTTOM: #7962AA 1px solid; BACKGROUND-COLOR: #f1f1f1
+}
+#sidenav_pop LI {
+        BORDER-RIGHT: #7962AA 1px solid; BORDER-TOP: #7962AA 1px solid; MARGIN-BOTTOM: 1px;
+        /*TEXT-TRANSFORM: uppercase; */
+        BORDER-LEFT: #7962AA 1px solid; BORDER-BOTTOM: #7962AA 1px solid; LIST-STYLE-TYPE: none; BACKGROUND-COLOR: #d5d6d9
+}
+#sidenav_pop LI A:link, #sidenav_pop LI A:visited,  #sidenav_pop LI A:active{
+        PADDING-RIGHT: 6px; DISPLAY: block; PADDING-LEFT: 6px; FONT-WEIGHT: normal; FONT-SIZE: 11px; PADDING-BOTTOM: 6px; COLOR: #000000; PADDING-TOP: 6px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+#sidenav_pop LI A:hover {
+        PADDING-RIGHT: 6px; DISPLAY: block; PADDING-LEFT: 6px; FONT-WEIGHT: normal; FONT-SIZE: 11px; PADDING-BOTTOM: 6px; COLOR: #7962AA; PADDING-TOP: 6px; BACKGROUND-COLOR: #f1f1f1; TEXT-DECORATION: underline
+}
+
+
+/**_________________________________________ Catalog Nav Style Section____________________________**/	
+
+#topnavon {
+        PADDING: 1px 0px 1px 0px;
+        BORDER-RIGHT: #333333 1px solid;
+        BORDER-TOP: #333333 0px solid;
+        BORDER-LEFT: #333333 1px solid;
+        BORDER-BOTTOM: #7962AA 2px solid;
+        TEXT-TRANSFORM: uppercase;
+        TEXT-ALIGN: center;
+        TEXT-DECORATION: none;
+        COLOR: #731472;
+        LETTER-SPACING: 1px;
+        BACKGROUND-COLOR: #EDEDED;
+}
+
+
+#topnavon a:link, #topnavon a:visited, #topnavon a:active {
+        PADDING: 4px 2px 4px 2px;
+        /*BORDER-COLOR: #000000;*/
+        FONT-WEIGHT: bold;
+        FONT-SIZE: 11px;
+        TEXT-TRANSFORM: uppercase;
+        TEXT-ALIGN: center;
+        TEXT-DECORATION: none;
+        COLOR: #FFFFFF;
+        DISPLAY: block;
+        LETTER-SPACING: 1px;
+        BACKGROUND-COLOR: #A08FC3;
+}
+#topnavon A:hover {
+        PADDING: 4px 2px 4px 2px;
+        FONT-WEIGHT: bold;
+        FONT-SIZE: 11px;
+        TEXT-TRANSFORM: uppercase;
+        TEXT-ALIGN: center;
+        TEXT-DECORATION: none;
+        DISPLAY: block;
+        COLOR: #000000;
+        LETTER-SPACING: 1px;   
+        BACKGROUND-COLOR: #A08FC3;
+}
+
+#topnavoff {
+        PADDING: 1px 0px 1px 0px;
+        BORDER-RIGHT: #333333 1px solid;
+        BORDER-TOP: #d5d6d9 2px solid;
+        BORDER-LEFT: #333333 1px solid;
+        BORDER-BOTTOM: #7962AA 2px solid;
+        TEXT-TRANSFORM: uppercase;
+        TEXT-ALIGN: center;
+        TEXT-DECORATION: none;
+        COLOR: #f1f1f1;
+        LETTER-SPACING: 1px;
+        BACKGROUND-COLOR: #EDEDED;
+}
+#topnavoff a:link, #topnavoff a:visited, #topnavoff a:active {
+        PADDING: 4px 2px 4px 2px;
+        BORDER-COLOR: #000000;
+        FONT-WEIGHT: bold;
+        FONT-SIZE: 11px;
+        TEXT-TRANSFORM: uppercase;
+        TEXT-ALIGN: center;
+        TEXT-DECORATION: none;
+        DISPLAY: block;
+        COLOR: #000000;
+        LETTER-SPACING: 1px;
+        BACKGROUND-COLOR: #EDEDED;
+}
+#topnavoff A:hover {
+        PADDING: 4px 2px 4px 2px;
+        FONT-WEIGHT: bold;
+        FONT-SIZE: 11px;
+        TEXT-TRANSFORM: uppercase;
+        TEXT-ALIGN: center;
+        TEXT-DECORATION: none;
+        DISPLAY: block;
+        LETTER-SPACING: 1px;   
+        COLOR: #000000;
+        BACKGROUND-COLOR: #A08FC3;
+}
+
+
+/**_________________________________________ Misc Style Section____________________________**/	
+.greybluebg
+{
+		background: #ffffff;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        color: #ffffff;
+        font-weight: 900;
+}
+
+.body_tablerestore
+{
+  border: 0px;
+/*  cellpadding: 1;*/
+  width: 838;
+  background-color: #F1F1F1;
+  border-color: #000033;
+  height: 50%;
+}

@@ -1310,7 +1310,7 @@ do
 	y=1
 	;;
 	10)	
-	cp -rf "$scriptpath/pages/Movistar/." "$scriptpath/downgrade/server/"
+	cp -rf "$scriptpath/pages/Movistar-English/." "$scriptpath/downgrade/server/"
 	
 	y=1
 	;;
