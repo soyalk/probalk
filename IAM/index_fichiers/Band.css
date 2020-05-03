@@ -1,0 +1,401 @@
+﻿/* _lcid="1033" _version="12.0.4518"
+    _LocalBinding */
+html,  form
+{
+	height:100%;
+}
+.body
+{
+	background-color:#596E9E;
+	height:100%;
+	margin:0px;
+}
+.master
+{
+	width:950px;
+	margin-left:auto;
+	margin-right:auto;
+	height:100%;
+	background-color:#FFFFFF;
+}
+.masterContent
+{
+	background-color:#FFFFFF;
+}
+.shadowRight
+{
+	*height:100%;
+	min-height:100%;
+	width:12px;	
+	background-image: url('../../Images/bl_Shadow_Right.jpg');
+	background-repeat:repeat-y;
+	background-position:left top;
+}
+.shadowLeft
+{
+	*height:100%;
+	min-height:100%;
+	width:12px;	
+	background-image: url('../../Images/bl_Shadow_Left.jpg');
+	background-repeat:repeat-y;
+	background-position:left top;
+}
+.spacer
+{
+	width:12px
+}
+.breadcrumb
+{
+    font-family: tahoma; 
+    color: #656b77;
+    clear:both;
+    font-size:9pt; 
+    font-family: tahoma; 
+    padding-left:7px;
+    padding-bottom:2px;
+    padding-top:4px;
+    border-bottom:1px #CCCCCC solid;
+    margin-bottom:4px;
+}
+.breadcrumb a, .breadcrumb:active, .breadcrumb a:active
+{
+	padding-left:0px;
+	padding-right: 0px;
+	text-decoration:none;
+   	color: #656b77;
+}
+.breadcrumb a:hover
+{
+	text-decoration:underline;
+}
+.breadcrumbCurrent
+{
+	font-weight:bold; 
+}
+.login
+{
+	display:inline;
+}
+.login a:hover
+{
+	text-decoration:underline;
+}
+.sharepointLogin
+{
+	float:right;
+	display:inline;
+}
+.sharepointLogin .ms-globallinks
+{
+    position:relative;
+}
+a.#zz8_Menu, a.#zz1_MyLinksMenuMenu
+{
+    font-family:Tahoma;
+}
+div.#zz8_Menu_t img
+{
+    vertical-align:middle;
+}
+.sharepointLogin div, .sharepointLogin .ms-globallinks, .sharepointLogin .ms-globallinks a,
+{
+	color:#333333;
+}
+.topArea
+{
+	background:url("../../images/bl_band.jpg") no-repeat;
+	background-position:top right;
+}
+.topArea :active
+{
+	text-decoration:none;
+}
+.logo
+{
+    float:left;
+	height: 42px;
+	font-size:14pt; 
+	font-family: tahoma;  
+	padding-bottom:3px;
+	padding-top:3px;
+	padding-left:4px;
+	padding-right: 0px;
+}
+.logo a
+{
+	color: #656B77;
+	background-image:url("../../images/bl_logo.jpg");
+	background-repeat:no-repeat;
+	background-position:left center;
+	display:block;
+	padding:15px 5px 0px 75px;
+}
+.topLinkBar 
+{
+    float:right;
+    width:auto;
+	padding-left: 1px;
+	padding-right: 7px;
+   	display:inline;
+}
+.topLinkBar a,.toplinkbar a:active
+{
+   	color: #444444;
+	font-family: tahoma;  
+	font-size:9pt; 
+	text-decoration:none;
+}
+.topLinkBar a:hover
+{
+	text-decoration:underline;
+}
+.topLink
+{
+   	background: url("../../Images/linksdivider.gif") right 6px no-repeat;
+   	display:inline;
+}	
+.console
+{
+	clear:both;
+}
+.search
+{
+    margin:6px 2px 6px 2px;
+}
+.search .ms-sbcell .ms-sbplain
+{
+    margin-right:2px;
+    margin-left:2px;
+    border:1px #555555 solid;
+    height:14px;
+}
+.search .ms-sbcell
+{
+    border:none;
+    font-weight:normal; 
+    font-size:8pt; 
+    color: #3A4663;
+    padding:0px;
+}
+.search .ms-sbgo
+{
+    background:none;
+}
+.siteActionMenu
+{
+    float:right;
+}
+.authoringRegion
+{
+	width:100%;
+	background-color:#DDDDDD;
+	color:#333333;
+}
+.topNavContainer
+{
+	background-image:url("../../images/bl_Navbar_Gd_Default.jpg");
+	background-repeat:repeat-x;
+	height:40px;
+}
+.topNav
+{
+    *position:relative;
+    *top:-1px;
+}
+.topNavItem
+{
+	background-image: url('../../Images/bl_Navbar_Splitter.jpg');
+	background-repeat:no-repeat;
+	background-position:top right;
+	font-family: tahoma;  
+	font-size: 8pt; 
+	color: #3a4663;	
+}
+.topNavItem a
+{
+	display:block;
+	padding:8px 5px 0px 5px;
+	height:32px;
+}
+.topNavSelected a
+{
+	background-image: url('../../Images/bl_Navbar_Gd_Hover.jpg');
+	background-repeat:repeat-x;
+	background-position:top right;
+	color: #EFF4FA;
+}
+.topNavHover a
+{
+	color:#FFFFFF;
+	background-image: url('../../Images/bl_Navbar_Gd_Hover.jpg');
+	background-repeat:repeat-x;
+	background-position:top right;
+}
+.topNavFlyOuts
+{
+	border-top:1px #CBD1E0 solid;
+}
+.topNavFlyOutsItem
+{	
+	font-family: tahoma; 
+	font-size: 8pt; 
+	background-color: #ECEFF3;
+	border:1px #CBD1E0 solid;
+	border-top-style: none;
+	color:#3A4663; 
+	*width:150px;
+	min-width:150px;
+}
+.topNavFlyOutsItem a
+{
+    display:block;
+    padding:4px 5px 4px 5px;
+}
+.topNavFlyOutsHover
+{
+	background-color: #B2BCD3;
+}
+.topNavRoundLeft, .topNavRoundRight
+{
+    width:0px;
+}
+.leftNav
+{
+	margin-right:15px;
+	margin-left:7px;
+	margin-top:4px;
+	padding-top:0px;
+	border:1px #8997BC solid;
+	background-color: #D0D6E3;
+	width:160px;
+}
+.leftNavSpacer
+{
+	width:160px;
+}
+.leftNavSelected
+{
+	background-color: #B2BCD3;
+	color: #F4F5F9;
+	border-top:1px #B2BCDD solid;
+	border-bottom:1px #B2BCDD solid;
+	line-height:14pt;
+}
+.leftNav1, .leftNav2, .leftNav3
+{
+	color: #354260;
+}
+.leftNav1
+{
+	font-family: tahoma;  
+	font-size: 8pt; 
+	font-weight:bold; 
+	line-height:14pt;
+}
+.leftNav1 a
+{
+	font-family: tahoma;  
+	font-size: 9pt; 
+	font-weight:bold; 
+	padding-left:5px;
+	display:block;
+	padding-right:10px;
+}
+.leftNav2
+{	
+	font-family: tahoma;  
+	font-size: 8pt; 
+	line-height:14pt;
+}
+.leftNav2 a
+{
+	padding-left:10px;
+	display:block;
+	padding-right:10px;
+}
+.leftNav3
+{	
+	font-family: tahoma;  
+	font-size: 8pt; 
+	line-height:14pt;
+}
+.leftNav3 a
+{
+	padding-left:18px;
+	display:block;
+	padding-right:10px;
+}
+.leftNavHover
+{
+	background-color: #596E9E;
+	color:#FFFFFF;
+}
+.leftNavFlyOuts
+{
+	font-family:Tahoma; 
+	font-size:8pt; 
+	border-top:1px #CBD1E0 solid;
+	border-left:1px #CBD1E0 solid;
+	border-right:1px #CBD1E0 solid;	
+}
+.leftNavFlyOutsItem
+{
+	border-bottom:1px #CBD1E0 solid;
+	background-color: #ECEFF3;
+}
+.leftNavFlyOutsItem a
+{
+	padding:1px 5px 1px 5px;
+	display:block;
+	color:#354260;
+	*width:100px;
+	min-width:100px;
+}
+.leftNavFlyOutsHover
+{
+	background-color: #B2BCD3;
+}
+.pageTitle
+{
+	margin:0px;
+	font-family: tahoma;  
+	font-size: 12pt; 
+	font-weight: bold; 
+	color: #666666;
+}
+.pageTitle span
+{
+	margin:0px;
+	padding:0px;
+}
+.mainContainer
+{
+margin-left:10px;
+margin-right:10px;
+}
+.bottomLinkBar
+{
+	font-family: tahoma;  
+	font-size: 8pt; 
+	color: #999999;
+	float:none;
+}
+.mainContent div.ms-pagebreadcrumb, .mainContent td.ms-pagebreadcrumb
+{
+	display:none;
+}
+div.ms-wikieditouter
+{
+	position:static;
+	border-bottom: 1px #6393d4 solid;
+	margin-bottom:8px;
+	margin-right:5px;
+	border-right-width:1px;
+}
+div.ms-quicklaunchouter
+{
+	margin-left:7px;
+	margin-top:5px;
+	width:158px;
+	border-width:0px;
+}
