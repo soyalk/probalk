@@ -1,0 +1,345 @@
+var random = Math.random();
+seajs.config({
+	map: [
+		//防止js文件夹下的文件被缓存
+		[/(.*js\/[^\/\.]*\.(?:js))(?:.*)/, '$1?' + "t=" + random]
+	]
+});
+
+
+function MainLogic() {
+	var that = this;
+	this.init = function () {
+		$("body").addClass("index-body");
+		this.initHtml();
+		this.initEvent();
+		that.getValue();
+		this.initModuleHeight();
+
+	
+	};
+
+	this.initHtml = function () {
+		var supportLang = B.options.support,
+			len = supportLang.length,
+			str,
+			i = 0;
+		str = "<div class='dropdown'>";
+		str += "<div class='addLang'>";
+		str += "<span class='lang'>" + B.langArr[B.lang] + "</span>";
+		str += "<span class='caret'></span>";
+		str += "</div>";
+		str += "<ul class='dropdown-menu'>";
+		for (i = 0; i < len; i++) {
+			lang = supportLang[i];
+			str += "<li data-val='" + lang + "'><a>" + B.langArr[lang] + "</a></li>";
+		}
+		str += "</ul>";
+
+		str += "</div>";
+		$("#selectLang").html(str);
+		changeIcon(B.lang);
+	};
+
+	function changeLocation() {
+		if ($(this).hasClass("icon-weibo")) {
+			$(this).attr("href", "http://weibo.com/100tenda");
+		} else if ($(this).hasClass("icon-wechat")) {
+			$("#weixinWrap").show();
+			$(this).attr("href", "javascript:void(0)");
+		} else if ($(this).hasClass("icon-facebook")) {
+			$(this).attr("href", "https://www.facebook.com/tendatechnology");
+		} else if ($(this).hasClass("icon-twitter")) {
+			$(this).attr("href", "https://twitter.com/tendasz1999");
+		}
+	}
+
+	function changeIcon(lang) {
+		$("#nav-footer-icon-cn, #nav-footer-icon-multi").addClass("none");
+		if (lang == "cn") {
+			$("#nav-footer-icon-cn").removeClass("none");
+
+			$('.brand').attr('href', 'http://tenda.com.cn');
+		} else {
+			$("#nav-footer-icon-multi").removeClass("none");
+			$('.brand').attr('href', 'http://tendacn.com');
+		}
+	}
+
+	this.initEvent = function () {
+		var clickTag = "click";
+		$("#nav-menu").delegate("li", "click", function () {
+			var targetMenu = this.children[0].id || "status";
+			that.changeMenu(targetMenu);
+		});
+
+		if (window.ontouchstart) { //当某些手机浏览器不支持click事件
+			clickTag = "touch";
+		}
+
+		$(document).delegate("*", "click", function (e) {
+			var target = e.target || e.srcElement,
+				clickSetLang;
+			if ($(target.parentNode).hasClass('addLang') || $(target.parentNode).attr('id') === "navbar-button") {
+				target = target.parentNode;
+			}
+			if ($(target).attr('id') != "navbar-button") {
+				if ($(target).attr('id') != "nav-menu") {
+					if (!$(".navbar-toggle").hasClass("none") && $("#nav-menu").hasClass("nav-menu-push")) {
+						$("#nav-menu").removeClass("nav-menu-push");
+					}
+				}
+			}
+
+
+			if ($(target).hasClass("addLang")) {
+				clickSetLang = true;
+			}
+
+			if (clickSetLang) {
+				//$("#selectLang .dropdown-menu").show();
+			} else {
+				$("#selectLang .dropdown-menu").hide();
+			}
+
+		});
+
+		$("#selectLang .addLang").on("click", function () {
+			if ($.isHidden($("#selectLang .dropdown-menu")[0])) {
+				$("#selectLang .dropdown-menu").show();
+			} else {
+				$("#selectLang .dropdown-menu").hide();
+			}
+		});
+
+		//for foreign version
+		//$("#nav-footer-icon").delegate(".nav-icon", "mouseover", changeLocation);
+		//$("#nav-footer-icon").delegate(".weixin", "mouseout", function () {
+		//$("#weixinWrap").hide();
+		//});
+
+		$("#selectLang .dropdown-menu li").on("click", function () {
+			var lang = $(this).attr("data-val");
+			$("#selectLang .dropdown-menu").hide();
+			B.setLang(lang);
+			window.location.reload(true);
+			$("#selectLang .lang").html(B.langArr[lang]);
+			changeIcon(lang);
+		});
+
+		$(window).resize(this.initModuleHeight);
+
+		$('#submit').on('click', function () {
+			that.modules.validate.checkAll();
+			$('#submit')[0].blur();
+		});
+
+		$("#navbar-button").on("click", function () {
+			if (!$("#nav-menu").hasClass("nav-menu-push")) {
+				$("#nav-menu").addClass("nav-menu-push");
+			} else {
+				$("#nav-menu").removeClass("nav-menu-push");
+			}
+		});
+
+		//Cancel
+		$('#cancel').on('click', function () {
+			that.modules.reCancel();
+		});
+
+		$("#loginout").on("click", function () {
+			$.post("goform/loginOut", "action=loginout", function () {
+				window.location.href = "./login.html";
+				//window.location.reload(true);
+			});
+		});
+	};
+
+
+	this.getValue = function () {
+		var modules = "loginAuth,wifiRelay";
+		$.getJSON("goform/getHomePageInfo?" + getRandom() + "&modules=" + encodeURIComponent(modules), function (obj) {
+			if (obj.loginAuth.hasLoginPwd == "true") {
+				$("#loginout").show();
+			} else {
+				$("#loginout").hide();
+			}
+
+			var wifiRelayObj = obj.wifiRelay,
+				fistMenu = "status";
+			if (wifiRelayObj.wifiRelayType == "client+ap") {
+				$("#netCtrNavWrap").remove();
+			}
+
+			if (wifiRelayObj.wifiRelayType == "ap") {
+				fistMenu = "wireless"; //在AP模式下没有系统状态，家长控制等
+				$(".routerMode").remove();
+			} else {
+				$("#userManageWrap").remove();
+			}
+			that.changeMenu(fistMenu);
+
+		});
+
+
+	};
+	//切换菜单栏
+	this.changeMenu = function (id) {
+		var nextUrl = id,
+			mainHtml;
+		$("#iframe").addClass("none");
+		$("#iframe").load("./" + nextUrl + ".html?" + random, function () {
+			if ($("#iframe").find("meta").length > 0) {
+				top.location.reload(true);
+				return;
+			}
+
+
+			if (id == "status") {
+				$("#submit").addClass("none");
+				$("#cancel").addClass("none");
+			} else {
+				$("#submit").removeClass("none");
+				$("#cancel").removeClass("none");
+			}
+
+			seajs.use("./js/" + nextUrl, function (modules) { //加载模块所需函数
+				//翻译
+				B.translatePage();
+				$("#iframe").removeClass("none");
+				modules.init(); //模块初始化
+				if (that.modules && that.modules != modules) { //判断前一个模块是否是当前模块
+					if (typeof that.modules.upgradeLoad == "object") { //解决ajaxupload 影响高度问题
+						//if (that.modules.upgradeLoad._input == "object") {
+						$("[name='upgradeFile']").parent().remove();
+						//}
+					}
+
+					//模块切换之后，修改模块运行标志
+					that.modules.pageRunning = false;
+					$.validate.utils.errorNum = 0; //切换页面时清空数据验证错误
+				}
+				that.modules = modules; //保留当前运行模块
+				that.initModuleHeight();
+			});
+		});
+		$("#nav-menu").removeClass("nav-menu-push");
+		$("li>.active").removeClass("active");
+		$("#" + id).addClass("active");
+
+	};
+	this.initModuleHeight = function () {
+		var viewHeight = $.viewportHeight(),
+			menuHeight = $("#sub-menu").height(),
+			mainHeight = $("#iframe").height(),
+			height,
+			minHeight;
+		minHeight = Math.max(menuHeight, mainHeight);
+		if (minHeight < (viewHeight - 110)) {
+			$("#nav-menu").css('min-height', minHeight + "px");
+			$("#main-content").css('min-height', minHeight + "px");
+		} else {
+			$("#nav-menu").css('min-height', minHeight + 40 + "px");
+			$("#main-content").css('min-height', minHeight + 40 + "px");
+		}
+
+		height = mainHeight;
+		if (height >= viewHeight - 110) {
+			height = height - 110;
+		} else {
+			height = viewHeight - 110;
+		}
+
+		if (minHeight > height) {
+			height = minHeight;
+		}
+
+		$("#nav-menu").css('height', height + 40 + "px");
+		$("#main-content").css('height', height + 30 + "px");
+	};
+
+	this.showMsgTimer = null;
+
+	this.showModuleMsg = function (text, showTime) {
+		var msgBox = $('#form-massage'),
+			time;
+		msgBox.html(text).fadeIn(10);
+
+		clearTimeout(that.showMsgTimer);
+		//0 表示不消失
+		if (showTime != 0) {
+			time = showTime || 2000;
+			that.showMsgTimer = setTimeout(function () {
+				msgBox.fadeOut(700);
+			}, time);
+		}
+	}
+}
+
+function ProgressLogic() {
+	var that = this;
+	var pc = 0;
+	this.type = null;
+	this.time = null;
+	this.upgradeTime = null;
+	this.rebootTime = null;
+	var ip;
+	this.init = function (str, type, rebootTime, hostip) {
+		ip = hostip || "";
+		$("#progress-dialog").css("display", "block");
+		$("#progress-overlay").addClass("in");
+		$("#form-massage").fadeOut(0);
+		this.type = type;
+		this.time = rebootTime || 200;
+		var rebootMsg = str || _("Rebooting...Please wait...");
+		$("#rebootWrap").find("p").html(rebootMsg);
+		if (type != "upgrade") {
+			$("#upgradeWrap").addClass("none");
+			this.reboot();
+		} else {
+			this.upgrade();
+		}
+
+	};
+	this.reboot = function () {
+		that.rebootTime = setTimeout(function () {
+			that.reboot();
+			pc++;
+		}, that.time);
+		if (pc > 100) {
+			clearTimeout(that.upgradeTime);
+			clearTimeout(that.rebootTime);
+			if (ip) {
+				window.location.href = "http://" + ip;
+			} else {
+				window.location.reload(true);
+			}
+			return;
+		}
+		$("#rebootWrap").find(".progress-bar").css("width", pc + "%");
+		$("#rebootWrap").find("span").html(pc + "%");
+	};
+	this.upgrade = function () {
+		that.upgradeTime = setTimeout(function () {
+			that.upgrade();
+			pc++;
+		}, 200);
+		if (pc > 100) {
+			clearTimeout(that.upgradeTime);
+			pc = 0;
+			that.reboot();
+			return;
+		}
+		$("#upgradeWrap").find(".progress-bar").css("width", pc + "%");
+		$("#upgradeWrap").find("span").html(pc + "%");
+	}
+}
+
+$(function () {
+	$("#main_content").show();
+	var mainLogic = new MainLogic();
+	window.mainLogic = mainLogic;
+	mainLogic.init();
+	var progressLogic = new ProgressLogic();
+	window.progressLogic = progressLogic;
+})

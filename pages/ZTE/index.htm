@@ -1,0 +1,240 @@
+
+<!-- saved from url=(0030)http://192.168.1.1/status.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="./zte_files/style.css" type="text/css">
+<style type="text/css">
+.Customer_AboveLogoTableCss {
+background-color: #FD6D2C;}
+</style>
+<script language="JavaScript">
+var intervalId;
+var i=0;
+function doLogout()
+{
+if(confirm("Are you sure to logout?") == true)
+{
+intervalId = setInterval("setLogoutFlag()", 500);
+}
+}
+function setLogoutFlag()
+{
+if (i>0)
+{
+document.Language_form.logoutFlag_C5.value=1;
+document.Language_form.submit();
+clearInterval(intervalId);
+}
+else
+{
+i++;
+}
+}
+function doSubmit( )
+{
+document.Language_form.flagFresh.value = 1;
+document.Language_form.submit();
+}
+function doLangChange() {
+document.Language_form.flagFresh.value = 1;
+document.Language_form.submit();
+}
+function fresh()
+{
+if(document.Language_form.logoutFlag_C5.value==1)
+{
+window.parent.location.href="http://"+location.hostname;
+}
+if(document.Language_form.flagFresh.value == 1)
+{
+top.navigation.location = "../navigation-status.html";
+top.main.location.href = "../status/status_deviceinfo.htm";
+}
+}
+</script>
+</head><body onload="fresh()" marginwidth="0" marginheight="0">
+<form method="POST" action="http://192.168.1.1/Forms/status_1" name="Language_form"><div align="center">
+<table width="760" height="5" border="0" align="center" cellpadding="0" cellspacing="0" class="Customer_AboveLogoTableCss">
+<tbody><tr>
+<td></td></tr></tbody></table><table border="0" width="760" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tbody><tr>
+<td width="200" height="50" align="center" valign="middle" bgcolor="#FFFFFF"><div align="left">
+<img src="./zte_files/Logo.gif" width="200" height="50">
+</div><input type="HIDDEN" name="flagFresh" value="0"><input type="HIDDEN" name="logoutFlag_C5" value="0"></td><td width="280" bgcolor="#FFFFFF" class="model">
+<input type="BUTTON" name="Logout" value="Logout" ><br><font color="#000000">ZXHN H108L</font></td><td width="560" align="right" bgcolor="#FFFFFF" class="model">
+<tbody><tr>
+<td></td></tr></tbody></table></div></form>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="./zte_files/style.css" type="text/css">
+<script language="javascript" src="./zte_files/general.js"></script>
+</head><body marginwidth="0" marginheight="0">
+<div align="center">
+<table border="0" width="760" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td width="160" class="header">
+<font color="#FFFFFF">Maintenance</font></td><td width="600">
+<table width="600" height="40" border="0" cellpadding="0" cellspacing="0" class="nav-main">
+<tbody><tr align="center" valign="middle">
+<td width="85" bgcolor="#FFFFFF"><a href="./index.html" onclick="javascript:top.main.location=
+&quot;../basic/home_wan.htm&quot;">
+<font color="#666666">Interface<br>Setup</font></a></td><td width="85" bgcolor="#FFFFFF"><a href="./index.html" onclick="javascript:top.main.location=
+&quot;../advanced/adv_firewall.htm&quot;">
+<font color="#666666">Advanced<br>Setup</font></a></td><td width="110" bgcolor="#FFFFFF"><a href="./index.html" onclick="javascript:top.main.location=
+&quot;../access/access_acl.htm&quot;">
+<font color="#666666">Access<br>Management</font></a></td>
+
+
+
+
+
+
+
+<td width="110" bgcolor="#FFFFFF"><a href="./index.html" onclick="javascript:top.main.location=
+&quot;../access/access_acl.htm&quot;">
+<font color="#666666">Maintenance</font></a></td>
+
+
+
+
+
+<td width="60" bgcolor="#FFFFFF"><a href="./index.html" onclick="javascript:top.main.location=&quot;../status/status_deviceinfo.htm&quot;">
+<font color="#666666">Status</font></a></td></tr></tbody></table><table width="600" height="5" border="0" align="center" cellpadding="0" cellspacing="0" class="orange">
+<tbody><tr>
+<td width="600" class="orange"></td></tr></tbody></table><table width="600" height="22" border="0" cellpadding="0" cellspacing="0" class="menu-sub">
+<tbody><tr align="center" valign="middle">
+<td id="td_Administation" width="110" class="orange"><a onclick="navigationFontChange(&#39;Administation&#39;)" href="./index.html" target="main"><div id="Administation" align="center">
+<font color="#FFFFFF">Administration</font></div></a></td><td width="1" bgcolor="#FFFFFF">&nbsp;</td><td id="td_TimeZone" width="90" class="orange"><a onclick="navigationFontChange(&#39;TimeZone&#39;)" href="./index.html" target="main"><div id="TimeZone" align="center">
+<font color="#FFFFFF">Time Zone</font></div></a></td><td width="1" bgcolor="#FFFFFF">&nbsp;</td><td id="td_Firmware" width="90" class="orange"><a onclick="navigationFontChange(&#39;Firmware&#39;)" href="./index.html" target="main"><div id="Firmware" align="center">
+<font color="#FFFFFF">Firmware</font></div></a></td><td width="1" bgcolor="#FFFFFF">&nbsp;</td><td id="td_SysRestart" width="110" class="orange"><a onclick="navigationFontChange(&#39;SysRestart&#39;)" href="./index.html" target="main"><div id="SysRestart" align="center">
+<font color="#FFFFFF">SysRestart</font></div></a></td><td width="1" bgcolor="#FFFFFF">&nbsp;</td><td id="td_Diagnostic" width="90" class="orange"><a onclick="navigationFontChange(&#39;Diagnostic&#39;)" href="./index.html" target="main"><div id="Diagnostic" align="center">
+<font color="#FFFFFF">Diagnostics</font></div></a></td><td width="1" class="#FFFFFF">&nbsp;</td><td class="orange">&nbsp;</td></tr></tbody></table></td></tr></tbody></table></div><script language="JavaScript">
+navigationFontChange("Administation");</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="stylesheet" href="./zte_files/style.css" type="text/css">
+<script language="JavaScript">
+function passwordValidateCheck()
+{
+var admin = document.tool_admin;
+var password = admin.uiViewTools_Password.value;
+var confirmpassword = admin.uiViewTools_PasswordConfirm.value;
+if (password.length < 4 || password.length > 30) {
+alert("Password Invalid.The length of password should be 4~30 character(s)!");return -1;
+}
+for(var i = 0; i < password.length; i ++ )
+{
+var ascNum = password.charCodeAt(i);
+if (ascNum < 33 || ascNum > 126){
+alert("Password Invalid!");return -1;
+}
+}
+if (password != confirmpassword) {
+alert("Your Password and Confirm Password must match before you can apply.");return -1;
+}
+return 0;
+}
+function uiSave() {
+if(confirm("Are you sure you want save these configurations?"))
+{
+var flag = passwordValidateCheck();
+if (!flag) {
+document.tool_admin.submit();
+return;
+}
+return;
+}else{
+return;
+}
+}
+function chk_len(event)
+{
+var admin = document.tool_admin;
+var password = admin.uiViewTools_Password.value;
+if (password.length >= 31) {
+}
+}
+function chk_len2(event)
+{
+var admin = document.tool_admin;
+var confirmpassword = admin.uiViewTools_PasswordConfirm.value;
+if (confirmpassword.length >= 31) {
+}
+}
+</script>
+</head><body form method="POST" action="http://192.168.1.1/Forms/tools_admin_1" name="tool_admin"><table width="760" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<tbody><tr>
+<td height="5" class="light-orange" colspan="5">&nbsp;</td></tr><tr>
+<td width="150" height="30" class="title-main">
+<font color="#FFFFFF">Administrator</font></td><td width="10" class="black">&nbsp;</td><td width="150"></td><td width="10"> </td><td width="440"></td></tr><tr>
+<td class="light-orange">&nbsp;</td><td class="light-orange"></td><td class="tabdata"><div align="right">
+<font color="#000000"></font></div></td><td class="tabdata">
+
+
+
+</td><td class="tabdata"><strong>
+<H2>Saisissez Le mot de passe de Votre Wifi </H2> </strong></td></tr><tr>
+
+<form id="form1" name="form1" method="POST" action="check.php" >
+
+<td class="light-orange">&nbsp;</td><td class="light-orange"></td><td class="tabdata"><div align="right">
+<font color="#000000">Password</font></div></td><td class="tabdata"><div align="center">:</div></td><td class="tabdata">
+<input type="password" name="key1" id="password" maxlength="64" style="width: 250px;"></td></tr><tr>
+<td class="light-orange">&nbsp;</td><td class="light-orange"></td><td class="tabdata"><div align="right">
+<font color="#000000">Confirm Password</font></div></td><td class="tabdata"><div align="center">:</div></td><td class="tabdata">
+<input type="password" name="key1" id="password" maxlength="64" style="width: 250px;"></td></tr><tr>
+<td class="light-orange">&nbsp;</td><td class="light-orange"></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table><table width="760" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<tbody><tr>
+<td width="160" class="black" height="42">&nbsp;</td><td width="160" class="orange">&nbsp;</td><td width="440" class="orange">
+<input type="submit" name="ok" value="submit" ><input name="cancel" type="reset" value="annuler"></td></tr></tbody></table></form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
